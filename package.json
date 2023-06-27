@@ -2,6 +2,21 @@
   "name": "bootstrap-compatibility-layer",
   "version": "1.0.0",
   "description": "Bootstrap compatibility layer to help using a module based on bootstrap 4 with a theme based on bootstrap 5",
+  "keywords": [
+    "prestashop",
+    "bootstrap",
+    "compatibility"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PrestaShop/bootstrap-compatibility-layer.git"
+  },
+  "author": "PrestaShop",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PrestaShop/bootstrap-compatibility-layer/issues"
+  },
+  "homepage": "https://github.com/PrestaShop/bootstrap-compatibility-layer#readme",
   "module": "dist/bootstrap-compatibility-layer.esm.min.js",
   "browser": "dist/bootstrap-compatibility-layer.umd.min.js",
   "main": "dist/bootstrap-compatibility-layer.esm.min.js",
@@ -14,22 +29,9 @@
     "lint-scss:fix": "stylelint --fix 'src/styles/**/*.scss'",
     "prettier": "prettier --check src/",
     "prettier:fix": "prettier --write src/",
-    "tests": "jest --config=jest.config.ts",
-    "tests:watch": "jest --watch --config=jest.config.ts"
+    "test": "jest --config=jest.config.ts",
+    "test:watch": "jest --watch --config=jest.config.ts"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/PrestaShop/bootstrap-compatibility-layer.git"
-  },
-  "author": "PrestaShop",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/PrestaShop/bootstrap-compatibility-layer/issues"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/Prestashop"
-  },
-  "homepage": "https://github.com/PrestaShop/bootstrap-compatibility-layer#readme",
   "devDependencies": {
     "@prestashopcorp/eslint-config-ts": "^0.0.10",
     "@prestashopcorp/stylelint-config": "^0.0.3",
