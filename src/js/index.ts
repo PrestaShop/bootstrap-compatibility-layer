@@ -1,15 +1,13 @@
 import '../styles/index.scss';
 
-declare global {
-  interface Window { BSCompatibilityLayer: any }
-}
-
 class BSCompatibilityLayer {
+  constructor() {
+    this.init();
+  }
+
   init(): void {
     console.log('test');
   }
 }
-
-window.BSCompatibilityLayer = new BSCompatibilityLayer();
 
 export default new BSCompatibilityLayer();
