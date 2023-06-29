@@ -11,7 +11,7 @@ export default {
     ts(),
     terser(),
     scss({
-      // @ts-expect-error
+      // @ts-expect-error the type are not up-to-date
       processor: () => postcss([autoprefixer()]),
       fileName: 'bootstrap-compatibility-layer.min.css',
       outputStyle: 'compressed'
