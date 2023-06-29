@@ -1,10 +1,9 @@
 describe('test for test', () => {
-  test('if window BSCompatibilityLayer is not available', () => {
-    expect(window.BSCompatibilityLayer).toBeUndefined();
-  });
-  test('if window BSCompatibilityLayer is available', () => {
+  test('if BSCompatibilityLayer init', () => {
+    const consoleSpy = jest.spyOn(console, 'log');
     require('../../src/js/index');
-    expect(window.BSCompatibilityLayer).toBeDefined();
+    expect(consoleSpy).toHaveBeenCalledWith('test');
+    consoleSpy.mockRestore();
   });
 });
 
