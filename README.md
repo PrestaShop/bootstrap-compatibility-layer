@@ -29,4 +29,4 @@ Contributions are welcome!
 PrestaShop is a free and Open Source e-commerce web application written in PHP, committed to providing the best shopping cart experience for both merchants and customers. [Learn more about PrestaShop](https://www.prestashop-project.org/)
 
 ## License
-This UI Kit is released under the [MIT License](LICENSE).
+This Bootstrap compatibility layer is released under the [MIT License](LICENSE).
