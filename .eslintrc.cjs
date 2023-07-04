@@ -11,7 +11,9 @@ module.exports = {
     node: true,
     jest: true
   },
-  globals: {},
+  globals: {
+    bootstrap: 'readonly'
+  },
   rules: {
     'space-before-function-paren': 'off',
     '@typescript-eslint/space-before-function-paren': 'off',
