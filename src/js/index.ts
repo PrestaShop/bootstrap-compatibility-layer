@@ -1,18 +1,12 @@
 import '../styles/index.scss';
 
+// The BSCompatibilityLayer class is responsible for updating the data attributes of HTML elements to be compatible with Bootstrap 5. It also initializes the popover and tooltip components of Bootstrap 5.
 class BSCompatibilityLayer {
+  readonly dataToUpdate: Record<string, string>;
+
   constructor() {
-    this.init();
-  }
-
-  init(): void {
-    this.updateDataAttributes();
-    this.initPopover();
-    this.initTooltip();
-  }
-
-  updateDataAttributes(): void {
-    const dataToReplace = {
+    // a readonly object that maps the old data attributes to the new data attributes in Bootstrap 5
+    this.dataToUpdate = {
       'data-autohide': 'data-bs-autohide',
       'data-content': 'data-bs-content',
       'data-dismiss': 'data-bs-dismiss',
@@ -28,25 +22,35 @@ class BSCompatibilityLayer {
       'data-toggle': 'data-bs-toggle',
       'data-trigger': 'data-bs-trigger'
     };
+    this.init();
+  }
 
-    for (const [key, value] of Object.entries(dataToReplace)) {
+  init(): void {
+    this.updateDataAttributes();
+    this.initPopover();
+    this.initTooltip();
+  }
+
+  public updateDataAttributes(): void {
+    for (const [key, value] of Object.entries(this.dataToUpdate)) {
       const findData = document.querySelectorAll(`[${key}]`);
-      [...findData].forEach(el => {
-        const dataValue = el.getAttribute(key) ?? '';
-        el.setAttribute(value, dataValue);
+      Array.from(findData).forEach(el => {
+        const dataValue = el.getAttribute(key);
+        if (dataValue !== null && dataValue !== '') {
+          el.setAttribute(value, dataValue);
+        }
       });
     }
   }
 
-  initPopover(): void {
-    // Popover
+  public initPopover(): void {
     const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-    [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
+    Array.from(popoverTriggerList).map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
   }
 
-  initTooltip(): void {
+  public initTooltip(): void {
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-    [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+    Array.from(tooltipTriggerList).map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
   }
 }
 
