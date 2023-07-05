@@ -27,8 +27,6 @@ class BSCompatibilityLayer {
 
   init(): void {
     this.updateDataAttributes();
-    this.initPopover();
-    this.initTooltip();
   }
 
   public updateDataAttributes(): void {
@@ -41,16 +39,6 @@ class BSCompatibilityLayer {
         }
       });
     }
-  }
-
-  public initPopover(): void {
-    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-    Array.from(popoverTriggerList).map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
-  }
-
-  public initTooltip(): void {
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-    Array.from(tooltipTriggerList).map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
   }
 }
 
