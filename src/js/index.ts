@@ -1,4 +1,5 @@
 import '../styles/index.scss';
+import { type Popover, type Tooltip } from 'bootstrap';
 
 // The BSCompatibilityLayer class is responsible for updating the data attributes of HTML elements to be compatible with Bootstrap 5. It also initializes the popover and tooltip components of Bootstrap 5.
 class BSCompatibilityLayer {
@@ -27,6 +28,7 @@ class BSCompatibilityLayer {
 
   init(): void {
     this.updateDataAttributes();
+    this.attachJQueryMethods();
   }
 
   public updateDataAttributes(): void {
@@ -39,6 +41,28 @@ class BSCompatibilityLayer {
         }
       });
     }
+  }
+
+  public attachJQueryMethods(): void {
+    if ($ === undefined) {
+      return;
+    }
+    $.fn.extend({
+      popover: function(params: Partial<Popover.Options> | undefined) {
+        // @ts-expect-error because it's JQuery method
+        return this.each(function() {
+          // @ts-expect-error because of the scope
+          new bootstrap.Popover(this, params);
+        });
+      },
+      tooltip: function(params: Partial<Tooltip.Options> | undefined) {
+        // @ts-expect-error because it's JQuery method
+        return this.each(function() {
+          // @ts-expect-error because of the scope
+          new bootstrap.Tooltip(this, params);
+        });
+      }
+    });
   }
 }
 
