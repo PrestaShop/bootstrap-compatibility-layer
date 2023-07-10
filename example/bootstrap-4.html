@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bootstrap demo</title>
+  <title>Bootstrap 4 markup with compatibility layer demo</title>
   <style>
       body {
           padding: 0 0 80px 0;
@@ -60,8 +60,8 @@
           overflow: auto;
       }
   </style>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <link href="../dist/bootstrap-compatibility-layer.min.css" rel="stylesheet">
 </head>
 
@@ -75,14 +75,6 @@
     <div class="col-12 col-md-10">
       <div class="alert alert-primary mt-4">
         💡 Components page for Bootstrap v4 / v5 backward compatibility
-      </div>
-      <div class="alert alert-warning mt-4">
-        🛠️ <b>TODO: </b>
-        <ul class="m-0">
-          <li>Add all specific options for each components</li>
-          <li>Add CSS backward compatibility</li>
-          <li>Add components to visually check CSS backward compatibility if possible</li>
-        </ul>
       </div>
       <h1 class="title" id="dropdown">Dropdown</h1>
       <h2 class="title">Classic</h2>
@@ -403,22 +395,6 @@
           justo posuere, tempus imperdiet velit.</p>
       </div>
 
-      <h1 class="title" id="toast">Toasts</h1>
-      <button id="showToastBtn" class="btn btn-primary">Show Toast</button>
-
-      <div id="my_toast" class="toast position-fixed bottom-0 end-0 m-3" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-          <strong class="mr-auto">Bootstrap</strong>
-          <small>11 mins ago</small>
-          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="toast-body">
-          Hello, world! This is a toast message.
-        </div>
-      </div>
-
       <h1 class="title" id="tooltip">Tooltips</h1>
       <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
         Tooltip on top
@@ -439,10 +415,47 @@
 </div>
 
 <!-- Load Bootstrap v5-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
+<script
+src="https://code.jquery.com/jquery-3.7.0.min.js"
+integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+crossorigin="anonymous"></script>
 <script src="../dist/bootstrap-compatibility-layer.umd.min.js"></script>
+<script>
+  $('[data-toggle="popover"]').popover()
+
+  $('[data-toggle="tooltip"]').tooltip()
+
+  // Table of content
+  const headings = document.querySelectorAll('h1');
+  const tocList = document.createElement('ul');
+
+  headings.forEach((heading) => {
+    const tocItem = document.createElement('li');
+    const link = document.createElement('a');
+
+    link.href = '#' + heading.id;
+    link.textContent = heading.textContent;
+    tocItem.appendChild(link);
+    tocList.appendChild(tocItem);
+  });
+
+  // Append the table of contents list to #toc-container
+  const tocContainer = document.getElementById('toc-container');
+  tocContainer.appendChild(tocList);
+
+  const tocLinks = document.querySelectorAll('#toc-container a');
+  tocLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      tocLinks.forEach((link) => {
+        link.classList.remove("active");
+      });
+      link.classList.add("active");
+    });
+  });
+</script>
 </body>
 
 </html>

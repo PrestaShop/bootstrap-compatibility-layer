@@ -16,9 +16,6 @@ Or use it directly through our CDN:
 <link href="../dist/bootstrap-compatibility-layer.min.css" rel="stylesheet">
 [...]
 <script src="??/dist/bootstrap-compatibility-layer.umd.min.js"></script>
-<script>
-  window?.BSCompatibilityLayer?.init()
-</script>
 [...]
 ```
 

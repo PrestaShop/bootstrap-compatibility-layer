@@ -22,7 +22,7 @@
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true,
-    "types": ["@types/jest", "@types/jsdom", "@types/node"],
+    "types": ["@types/jest", "@types/jsdom", "@types/node", "@types/bootstrap", "@types/jquery"],
   },
   "files": ["package.json"],
   "include": ["./**/*.ts"],
