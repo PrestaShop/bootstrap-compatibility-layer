@@ -13,7 +13,7 @@ export default {
     scss({
       // @ts-expect-error the type are not up-to-date
       processor: () => postcss([autoprefixer()]),
-      fileName: 'bootstrap-compatibility-layer.min.css',
+      fileName: pkg.style.split('/')[1],
       outputStyle: 'compressed'
     })
   ],
