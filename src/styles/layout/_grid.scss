@@ -1,0 +1,34 @@
+// Breakpoints
+$breakpoints: sm, md, lg, xl;
+
+// Gutters
+.no-gutters{
+  --bs-gutter-x: 0;
+  --bs-gutter-y: 0;
+}
+
+// Order 
+@for $i from 6 through 12 {
+  .order-#{$i} {
+    -ms-flex-order: $i;
+    order: $i;
+  }  
+}
+@each $breakpoint in $breakpoints {
+  @for $i from 6 through 12 {
+    .order-#{$breakpoint}-#{$i} {
+      -ms-flex-order: $i;
+      order: $i;
+    }
+  }
+}
+
+// Media
+.media {
+  display: flex;
+  align-items: flex-start;
+}
+
+.media-body {
+  flex: 1;
+}
