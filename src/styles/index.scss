@@ -1,4 +1,9 @@
+// Configuration
+@import 'variables';
+
+// Layout & Components...
 @import 'mixins/mixins';
+@import 'components/badges';
 @import 'content/code';
 @import 'content/table';
 @import 'form/custom-forms';
