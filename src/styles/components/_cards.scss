@@ -1,0 +1,71 @@
+// Card deck
+.card-deck {
+  --bs-card-group-margin: 15px;
+  --bs-card-deck-margin: 15px;
+
+  .card {
+    margin-bottom: var(--bs-card-deck-margin);
+  }
+
+  @include media-breakpoint-up(sm) {
+    display: flex;
+    flex-flow: row wrap;
+    margin-right: calc(-1 * var(--bs-card-deck-margin));
+    margin-left: calc(-1 * var(--bs-card-deck-margin));
+
+    .card {
+      flex: 1 0 0%;
+      margin-right: var(--bs-card-deck-margin);
+      margin-bottom: 0;
+      margin-left: var(--bs-card-deck-margin);
+    }
+  }
+}
+
+// Card columns
+.card-columns {
+  --bs-card-columns-margin: 0.75rem;
+  --bs-card-columns-count: 3;
+  --bs-card-columns-gap: 1.25rem;
+
+  .card {
+    margin-bottom: var(--bs-card-columns-margin);
+  }
+
+  @include media-breakpoint-up(sm) {
+    column-count: var(--bs-card-columns-count);
+    column-gap: var(--bs-card-columns-gap);
+    orphans: 1;
+    widows: 1;
+
+    .card {
+      display: inline-block;
+      width: 100%;
+    }
+  }
+}
+
+// Card accordion
+.accordion {
+  overflow-anchor: none;
+
+  > .card {
+    overflow: hidden;
+
+    &:not(:last-of-type) {
+      border-bottom: 0;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &:not(:first-of-type) {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    > .card-header {
+      margin-bottom: calc(-1 * var(--bs-border-width));
+      border-radius: 0;
+    }
+  }
+}
