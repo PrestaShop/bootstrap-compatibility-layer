@@ -1,3 +1,5 @@
+/* stylelint-disable */
+// Input group CSS generate from Bootstrap 4
 .input-group-prepend,
 .input-group-append {
   display: flex;
@@ -19,8 +21,13 @@
   }
 }
 
-.input-group-prepend { margin-right: calc(-1 * var(--bs-border-width)); }
-.input-group-append { margin-left: calc(-1 * var(--bs-border-width)); }
+.input-group-prepend {
+  margin-right: calc(-1 * var(--bs-border-width));
+}
+
+.input-group-append {
+  margin-left: calc(-1 * var(--bs-border-width));
+}
 
 .input-group {
   position: relative;
@@ -35,9 +42,9 @@
   > .custom-file {
     position: relative;
     flex: 1 1 auto;
+    margin-bottom: 0;
     width: 1%;
     min-width: 0;
-    margin-bottom: 0;
 
     + .form-control,
     + .custom-select,
@@ -46,38 +53,35 @@
     }
   }
 
-  // Bring the "active" form control to the top of surrounding elements
   > .form-control:focus,
   > .custom-select:focus,
   > .custom-file .custom-file-input:focus ~ .custom-file-label {
     z-index: 3;
   }
 
-  // Bring the custom file input above the label
   > .custom-file .custom-file-input:focus {
     z-index: 4;
   }
 
   > .form-control,
   > .custom-select {
-    &:not(:first-child) { 
+    &:not(:first-child) {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
   }
 
-  // Custom file inputs have more complex markup, thus requiring different
-  // border-radius overrides.
   > .custom-file {
     display: flex;
     align-items: center;
 
     &:not(:last-child) .custom-file-label,
-    &:not(:last-child) .custom-file-label::after { 
+    &:not(:last-child) .custom-file-label::after {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
     }
-    &:not(:first-child) .custom-file-label { 
+
+    &:not(:first-child) .custom-file-label {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
@@ -104,7 +108,6 @@
   }
 }
 
-// Prepend and append rounded corners
 .input-group > .input-group-prepend > .btn,
 .input-group > .input-group-prepend > .input-group-text,
 .input-group:not(.has-validation) > .input-group-append:not(:last-child) > .btn,
@@ -126,3 +129,4 @@
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
+/* stylelint-enable */

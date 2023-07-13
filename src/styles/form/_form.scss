@@ -60,9 +60,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: auto;
       padding-left: 0;
+      width: auto;
     }
+
     .form-check-input {
       position: relative;
       flex-shrink: 0;
@@ -75,6 +76,7 @@
       align-items: center;
       justify-content: center;
     }
+
     .custom-control-label {
       margin-bottom: 0;
     }

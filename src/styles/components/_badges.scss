@@ -2,12 +2,12 @@
 @each $name, $color in $theme-colors {
   $bg: map-get($theme-colors, $name);
   .badge-#{$name} {
-    @if $name == light or $name == warning{
+    background-color: #{$bg};
+    @if $name == light or $name == warning {
       color: var(--bs-dark);
     } @else {
       color: var(--bs-white);
     }
-    background-color: #{$bg};
   }
 }
 

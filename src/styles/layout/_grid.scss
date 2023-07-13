@@ -1,18 +1,15 @@
-// Breakpoint
-$breakpoints: sm, md, lg, xl;
-
 // Gutter
-.no-gutters{
+.no-gutters {
   --bs-gutter-x: 0;
   --bs-gutter-y: 0;
 }
 
-// Order 
+// Order
 @for $i from 6 through 12 {
   .order-#{$i} {
     -ms-flex-order: $i;
     order: $i;
-  }  
+  }
 }
 @each $breakpoint in $breakpoints {
   @for $i from 6 through 12 {
