@@ -11,6 +11,7 @@ class BSCompatibilityLayer {
       'data-autohide': 'data-bs-autohide',
       'data-content': 'data-bs-content',
       'data-dismiss': 'data-bs-dismiss',
+      'data-html': 'data-bs-html',
       'data-offset': 'data-bs-offset',
       'data-parent': 'data-bs-parent',
       'data-placement': 'data-bs-placement',
@@ -34,7 +35,7 @@ class BSCompatibilityLayer {
   public updateDataAttributes(): void {
     for (const [key, value] of Object.entries(this.dataToUpdate)) {
       const findData = document.querySelectorAll(`[${key}]`);
-      Array.from(findData).forEach(el => {
+      Array.from(findData).forEach((el) => {
         const dataValue = el.getAttribute(key);
         if (dataValue !== null && dataValue !== '') {
           el.setAttribute(value, dataValue);
@@ -48,16 +49,16 @@ class BSCompatibilityLayer {
       return;
     }
     $.fn.extend({
-      popover: function(params: Partial<Popover.Options> | undefined) {
+      popover: function (params: Partial<Popover.Options> | undefined) {
         // @ts-expect-error because it's JQuery method
-        return this.each(function() {
+        return this.each(function () {
           // @ts-expect-error because of the scope
           new bootstrap.Popover(this, params);
         });
       },
-      tooltip: function(params: Partial<Tooltip.Options> | undefined) {
+      tooltip: function (params: Partial<Tooltip.Options> | undefined) {
         // @ts-expect-error because it's JQuery method
-        return this.each(function() {
+        return this.each(function () {
           // @ts-expect-error because of the scope
           new bootstrap.Tooltip(this, params);
         });
