@@ -10,6 +10,17 @@ $theme-colors: (
   "dark": #212529
 );
 
+// Spacing (Margin / Padding)
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3
+);
+
 // Breakpoints name v4
 $breakpoints: sm, md, lg, xl;
 

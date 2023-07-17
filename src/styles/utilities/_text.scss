@@ -1,6 +1,69 @@
-// stylelint-disable declaration-no-important
+// stylelint-disable declaration-no-important,font-weight-notation,font-family-no-missing-generic-family-keyword
 
-// Text
+// Alignment
 .text-justify {
   text-align: justify !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+@each $breakpoint in $breakpoints {
+  @include media-breakpoint-up(#{$breakpoint}) {
+    .text-#{$breakpoint}-left {
+      text-align: left !important;
+    }
+    .text-#{$breakpoint}-right {
+      text-align: right !important;
+    }
+  }
+}
+
+// Monospace
+.text-monospace {
+  font-family: var(--bs-font-monospace) !important;
+}
+
+// Hide
+.text-hide {
+  background-color: transparent;
+  border: 0;
+  font: 0/0 "a";
+  color: transparent;
+  text-shadow: none;
+}
+
+// Weight
+.font-weight-light {
+  font-weight: 300 !important;
+}
+
+.font-weight-lighter {
+  font-weight: lighter !important;
+}
+
+.font-weight-normal {
+  font-weight: 400 !important;
+}
+
+.font-weight-bold {
+  font-weight: 700 !important;
+}
+
+.font-weight-bolder {
+  font-weight: bolder !important;
+}
+
+// Style
+.font-italic {
+  font-style: italic !important;
+}
+
+.font-normal {
+  font-style: normal !important;
 }

@@ -5,3 +5,8 @@
     @content;
   }
 }
+
+// Close
+@mixin btn-close-white() {
+  filter: var(--bs-btn-close-white-filter);
+}

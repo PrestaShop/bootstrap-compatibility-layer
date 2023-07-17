@@ -1,3 +1,4 @@
+// Close
 .close {
   --bs-btn-close-color: #{$btn-close-color};
   --bs-btn-close-bg: #{$btn-close-bg};
@@ -41,10 +42,6 @@
       display: none;
     }
   }
-}
-
-@mixin btn-close-white() {
-  filter: var(--bs-btn-close-white-filter);
 }
 
 .btn-close-white {

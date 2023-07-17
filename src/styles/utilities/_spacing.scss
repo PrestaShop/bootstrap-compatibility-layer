@@ -1,0 +1,92 @@
+// stylelint-disable declaration-no-important
+
+// Margin & Padding
+.ml-auto {
+  margin-left: auto !important;
+}
+
+.mr-auto {
+  margin-right: auto !important;
+}
+
+.pl-auto {
+  padding-left: auto !important;
+}
+
+.pr-auto {
+  padding-right: auto !important;
+}
+
+@each $name, $spacer in $spacers {
+  .ml-#{$name} {
+    margin-left: #{$spacer} !important;
+  }
+  .mr-#{$name} {
+    margin-right: #{$spacer} !important;
+  }
+  .pl-#{$name} {
+    padding-left: #{$spacer} !important;
+  }
+  .pr-#{$name} {
+    padding-right: #{$spacer} !important;
+  }
+
+  @each $breakpoint in $breakpoints {
+    @include media-breakpoint-up($breakpoint) {
+      .ml-#{$breakpoint}-#{$name} {
+        margin-left: #{$spacer} !important;
+      }
+      .mr-#{$breakpoint}-#{$name} {
+        margin-right: #{$spacer} !important;
+      }
+      .pl-#{$breakpoint}-#{$name} {
+        padding-left: #{$spacer} !important;
+      }
+      .pr-#{$breakpoint}-#{$name} {
+        padding-right: #{$spacer} !important;
+      }
+    }
+  }
+}
+
+// Negative margin
+@each $name, $spacer in $spacers {
+  @if $spacer != 0 {
+    .mt-n#{$name},
+    .my-n#{$name} {
+      margin-top: -#{$spacer} !important;
+    }
+    .mr-n#{$name},
+    .mx-n#{$name} {
+      margin-right: -#{$spacer} !important;
+    }
+    .mb-n#{$name},
+    .my-n#{$name} {
+      margin-bottom: -#{$spacer} !important;
+    }
+    .ml-n#{$name},
+    .mx-n#{$name} {
+      margin-left: -#{$spacer} !important;
+    }
+    @each $breakpoint in $breakpoints {
+      @include media-breakpoint-up($breakpoint) {
+        .mt-#{$breakpoint}-n#{$name},
+        .my-#{$breakpoint}-n#{$name} {
+          margin-top: -#{$spacer} !important;
+        }
+        .mr-#{$breakpoint}-n#{$name},
+        .mx-#{$breakpoint}-n#{$name} {
+          margin-right: -#{$spacer} !important;
+        }
+        .mb-#{$breakpoint}-n#{$name},
+        .my-#{$breakpoint}-n#{$name} {
+          margin-bottom: -#{$spacer} !important;
+        }
+        .ml-#{$breakpoint}-n#{$name},
+        .mx-#{$breakpoint}-n#{$name} {
+          margin-left: -#{$spacer} !important;
+        }
+      }
+    }
+  }
+}
