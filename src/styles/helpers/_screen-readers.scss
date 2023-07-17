@@ -1,0 +1,22 @@
+// Screen readers
+.sr-only {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  white-space: nowrap;
+}
+
+.sr-only-focusable:active,
+.sr-only-focusable:focus {
+  position: static;
+  clip: auto;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  white-space: normal;
+}
