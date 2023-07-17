@@ -30,6 +30,10 @@
 
   .card {
     margin-bottom: var(--bs-card-columns-margin);
+
+    .blockquote-footer {
+      margin: 0;
+    }
   }
 
   @include media-breakpoint-up(sm) {

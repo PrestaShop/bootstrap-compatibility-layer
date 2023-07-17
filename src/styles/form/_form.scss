@@ -1,4 +1,10 @@
 // Form
+.form-control {
+  height: calc(1.5em + 0.75rem + 2px);
+  appearance: auto;
+}
+
+// Form layout
 .form-group {
   margin-bottom: 1rem;
 }
