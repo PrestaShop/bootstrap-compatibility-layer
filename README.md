@@ -13,9 +13,9 @@ pnpm add bootstrap-compatibility-layer
 Or use it directly through our CDN:
 ```html
 [...]
-<link href="../dist/bootstrap-compatibility-layer.min.css" rel="stylesheet">
+<link href="https://unpkg.com/bootstrap-compatibility-layer@0.1/dist/bootstrap-compatibility-layer.min.css" rel="stylesheet">
 [...]
-<script src="??/dist/bootstrap-compatibility-layer.umd.min.js"></script>
+<script src="https://unpkg.com/bootstrap-compatibility-layer@0.1"></script>
 [...]
 ```
 
