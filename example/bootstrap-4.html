@@ -18,8 +18,13 @@
       font-weight: 600;
     }
 
-    h1.sep::before {
+    h1#js::before {
       content: '🧑‍💻';
+      padding-right: 1rem;
+    }
+
+    h1#css::before {
+      content: '🎨';
       padding-right: 1rem;
     }
 
@@ -121,6 +126,7 @@
         </div>
 
         <h1 class="title sep" id="js">Javascript Components</h1>
+
         <h2 class="title mt-4" id="dropdown">Dropdown</h2>
         <h3 class="title">Classic</h3>
         <div class="dropdown">
@@ -134,6 +140,7 @@
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
         </div>
+
         <h3 class="title">Options</h3>
         <div class="d-flex gap-1">
           <div class="dropdown mr-1">
@@ -202,7 +209,6 @@
         </div>
 
         <h2 class="title" id="collapse">Collapse</h2>
-
         <h3 class="title">Accordion</h3>
         <div class="accordion" id="accordionExample">
           <div class="card">
@@ -459,7 +465,7 @@
         </button>
 
         <h1 class="title sep" id="css">CSS components</h1>
-        
+
         <h2 class="title mt-4" id="buttons">Buttons</h2>
         <h3 class="code">.btn-block</h3>
         <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
@@ -471,6 +477,7 @@
           <div class="col-sm-6 col-md-8">.col-sm-6 .col-md-8</div>
           <div class="col-6 col-md-4">.col-6 .col-md-4</div>
         </div>
+
         <h3 class="code">.order-*</h3>
         <div class="container">
           <div class="row colored-col">
@@ -485,6 +492,7 @@
             </div>
           </div>
         </div>
+
         <h3 class="code">.media</h3>
         <div class="media">
           <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" class="mr-3" width="64">
@@ -592,326 +600,340 @@
           above. Yeah, you take me to utopia.</p>
 
         <h2 class="title" id="forms">Forms</h2>
-        <h3 class="title">Form elements</h2>
-          <form>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="inputEmail4">Email</label>
-                <input type="email" class="form-control" id="inputEmail4">
-              </div>
-              <div class="form-group col-md-6">
-                <label for="inputPassword4">Password</label>
-                <input type="password" class="form-control" id="inputPassword4">
+        <h3 class="title">Form elements</h3>
+        <form>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Email</label>
+              <input type="email" class="form-control" id="inputEmail4">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Password</label>
+              <input type="password" class="form-control" id="inputPassword4">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputAddress">Address</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+          </div>
+          <div class="form-group">
+            <label for="inputAddress2">Address 2</label>
+            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputCity">City</label>
+              <input type="text" class="form-control" id="inputCity">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputState">State</label>
+              <select id="inputState" class="form-control">
+                <option selected>Choose...</option>
+                <option>...</option>
+              </select>
+            </div>
+            <div class="form-group col-md-2">
+              <label for="inputZip">Zip</label>
+              <input type="text" class="form-control" id="inputZip">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="gridCheck">
+              <label class="form-check-label" for="gridCheck">
+                Check me out
+              </label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Sign in</button>
+        </form>
+
+        <h3 class="title">Input group</h3>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">@</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+            aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
+            aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">@example.com</span>
+          </div>
+        </div>
+
+        <label for="basic-url">Your vanity URL</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
+          </div>
+          <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">$</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+          <div class="input-group-append">
+            <span class="input-group-text">.00</span>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">With textarea</span>
+          </div>
+          <textarea class="form-control" aria-label="With textarea"></textarea>
+        </div>
+
+        <h2 class="title" id="badges">Badges</h2>
+        <h3 class="title">Badge states</h3>
+        <span class="badge badge-primary">Primary</span>
+        <span class="badge badge-secondary">Secondary</span>
+        <span class="badge badge-success">Success</span>
+        <span class="badge badge-danger">Danger</span>
+        <span class="badge badge-warning">Warning</span>
+        <span class="badge badge-info">Info</span>
+        <span class="badge badge-light">Light</span>
+        <span class="badge badge-dark">Dark</span>
+        <br />
+
+        <h3 class="code">.badge-pill</h3><br />
+        <span class="badge badge-pill badge-primary">Primary</span>
+        <span class="badge badge-pill badge-secondary">Secondary</span>
+        <span class="badge badge-pill badge-success">Success</span>
+        <span class="badge badge-pill badge-danger">Danger</span>
+        <span class="badge badge-pill badge-warning">Warning</span>
+        <span class="badge badge-pill badge-info">Info</span>
+        <span class="badge badge-pill badge-light">Light</span>
+        <span class="badge badge-pill badge-dark">Dark</span>
+
+        <h2 class="title" id="cards">Cards</h2>
+        <h3 class="code">.card-deck</h3>
+        <div class="card-deck">
+          <div class="card">
+            <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" class="card-img-top"
+              width="100%" height="auto">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" class="card-img-top"
+              width="100%" height="auto">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This card has supporting text below as a natural lead-in to additional content.
+              </p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" class="card-img-top"
+              width="100%" height="auto">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                additional content. This card has even longer content than the first to show that equal height
+                action.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="code">.card-columns</h3>
+        <div class="card-columns">
+          <div class="card">
+            <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" class="card-img-top"
+              width="100%" height="auto">
+            <div class="card-body">
+              <h5 class="card-title">Card title that wraps to a new line</h5>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                additional content. This content is a little bit longer.</p>
+            </div>
+          </div>
+          <div class="card p-3">
+            <blockquote class="blockquote mb-0 card-body">
+              <p>A well-known quote, contained in a blockquote element.</p>
+              <footer class="blockquote-footer">
+                <small class="text-muted">
+                  Someone famous in <cite title="Source Title">Source Title</cite>
+                </small>
+              </footer>
+            </blockquote>
+          </div>
+          <div class="card">
+            <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" class="card-img-top"
+              width="100%" height="auto">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This card has supporting text below as a natural lead-in to additional content.
+              </p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="card bg-primary text-white text-center p-3">
+            <blockquote class="blockquote mb-0">
+              <p>A well-known quote, contained in a blockquote element.</p>
+              <footer class="blockquote-footer text-white">
+                <small>
+                  Someone famous in <cite title="Source Title">Source Title</cite>
+                </small>
+              </footer>
+            </blockquote>
+          </div>
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This card has a regular title and short paragraphy of text below it.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" class="card-img"
+              width="100%" height="auto">
+          </div>
+          <div class="card p-3 text-right">
+            <blockquote class="blockquote mb-0">
+              <p>A well-known quote, contained in a blockquote element.</p>
+              <footer class="blockquote-footer">
+                <small class="text-muted">
+                  Someone famous in <cite title="Source Title">Source Title</cite>
+                </small>
+              </footer>
+            </blockquote>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is another card with title and supporting text below. This card has some
+                additional content to make it slightly taller overall.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="title">Card based accordion</h3>
+        <div class="accordion" id="accordionExample">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                  data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Collapsible Group Item #1
+                </button>
+              </h2>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body">
+                Some placeholder content for the first accordion panel. This panel is shown by default, thanks to
+                the <code>.show</code> class.
               </div>
             </div>
-            <div class="form-group">
-              <label for="inputAddress">Address</label>
-              <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                  data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Collapsible Group Item #2
+                </button>
+              </h2>
             </div>
-            <div class="form-group">
-              <label for="inputAddress2">Address 2</label>
-              <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="inputCity">City</label>
-                <input type="text" class="form-control" id="inputCity">
-              </div>
-              <div class="form-group col-md-4">
-                <label for="inputState">State</label>
-                <select id="inputState" class="form-control">
-                  <option selected>Choose...</option>
-                  <option>...</option>
-                </select>
-              </div>
-              <div class="form-group col-md-2">
-                <label for="inputZip">Zip</label>
-                <input type="text" class="form-control" id="inputZip">
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+              <div class="card-body">
+                Some placeholder content for the second accordion panel. This panel is hidden by default.
               </div>
             </div>
-            <div class="form-group">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                  Check me out
-                </label>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                  data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Collapsible Group Item #3
+                </button>
+              </h2>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+              <div class="card-body">
+                And lastly, the placeholder content for the third and final accordion panel. This panel is hidden
+                by default.
               </div>
             </div>
-            <button type="submit" class="btn btn-primary">Sign in</button>
-          </form>
-          <h3 class="title">Input group</h2>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">@</span>
-              </div>
-              <input type="text" class="form-control" placeholder="Username" aria-label="Username"
-                aria-describedby="basic-addon1">
-            </div>
+          </div>
+        </div>
 
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Recipient's username"
-                aria-label="Recipient's username" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <span class="input-group-text" id="basic-addon2">@example.com</span>
-              </div>
-            </div>
+        <h2 class="title" id="close">Close</h2>
+        <h3 class="code">.close</h3><br />
+        <button type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
 
-            <label for="basic-url">Your vanity URL</label>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
-              </div>
-              <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-            </div>
+        <h2 class="title" id="jumbotron">Jumbotron</h2>
+        <div class="jumbotron">
+          <h1 class="display-4">Hello, world!</h1>
+          <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra
+            attention to featured content or information.</p>
+          <hr class="my-4">
+          <p>It uses utility classes for typography and spacing to space content out within the larger container.
+          </p>
+          <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        </div>
 
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">$</span>
-              </div>
-              <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-              <div class="input-group-append">
-                <span class="input-group-text">.00</span>
-              </div>
-            </div>
+        <h2 class="title" id="utilities">Utilities</h2>
+        <h3 class="code"><b>.left-*</b> and <b>.right-*</b> become <b>.start-*</b> and <b>.end-*</b></h3><br />
+        <h3 class="code"><b>.float-left</b> and <b>.float-right</b> become <b>.float-start</b> and <b>.float-end</b>
+        </h3><br />
+        <h3 class="code"><b>.border-left</b> and <b>.border-right</b> become <b>.border-start</b> and <b>.border-end</b>
+        </h3><br />
+        <h3 class="code"><b>.rounded-left</b> and <b>.rounded-right</b> become <b>.rounded-start</b> and
+          <b>.rounded-end</b></h3><br />
+        <h3 class="code"><b>.ml-*</b> and <b>.mr-*</b> become <b>.ms-*</b> and <b>.me-*</b></h3><br />
+        <h3 class="code"><b>.pl-*</b> and <b>.pr-*</b> become <b>.ps-*</b> and <b>.pe-*</b></h3><br />
+        <h3 class="code"><b>.text-left</b> and <b>.text-right</b> become <b>.text-start</b> and <b>.text-end</b></h3>
+        <br />
 
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">With textarea</span>
-              </div>
-              <textarea class="form-control" aria-label="With textarea"></textarea>
-            </div>
+        <h3 class="code">.text-monospace</h3>
+        <p class="text-monospace">This is in monospace</p>
 
-            <h2 class="title" id="badges">Badges</h2>
-            <h3 class="title">Badge states</h2>
-              <span class="badge badge-primary">Primary</span>
-              <span class="badge badge-secondary">Secondary</span>
-              <span class="badge badge-success">Success</span>
-              <span class="badge badge-danger">Danger</span>
-              <span class="badge badge-warning">Warning</span>
-              <span class="badge badge-info">Info</span>
-              <span class="badge badge-light">Light</span>
-              <span class="badge badge-dark">Dark</span>
-              <br />
+        <h3 class="code">.text-hide</h3>
+        <p class="text-hide">This is hide</p>
 
-              <h3 class="code">.badge-pill</h3><br />
-              <span class="badge badge-pill badge-primary">Primary</span>
-              <span class="badge badge-pill badge-secondary">Secondary</span>
-              <span class="badge badge-pill badge-success">Success</span>
-              <span class="badge badge-pill badge-danger">Danger</span>
-              <span class="badge badge-pill badge-warning">Warning</span>
-              <span class="badge badge-pill badge-info">Info</span>
-              <span class="badge badge-pill badge-light">Light</span>
-              <span class="badge badge-pill badge-dark">Dark</span>
+        <h3 class="code">.font-weight-*</h3> ... <h3 class="code">.font-"style"</h3>
+        <p class="font-weight-bold">Bold text.</p>
+        <p class="font-weight-bolder">Bolder weight text (relative to the parent element).</p>
+        <p class="font-weight-normal">Normal weight text.</p>
+        <p class="font-weight-light">Light weight text.</p>
+        <p class="font-weight-lighter">Lighter weight text (relative to the parent element).</p>
+        <p class="font-italic">Italic text.</p>
 
-              <h2 class="title" id="cards">Cards</h2>
-              <h3 class="code">.card-deck</h3>
-              <div class="card-deck">
-                <div class="card">
-                  <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png"
-                    class="card-img-top" width="100%" height="auto">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                      additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                  </div>
-                </div>
-                <div class="card">
-                  <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png"
-                    class="card-img-top" width="100%" height="auto">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.
-                    </p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                  </div>
-                </div>
-                <div class="card">
-                  <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png"
-                    class="card-img-top" width="100%" height="auto">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                      additional content. This card has even longer content than the first to show that equal height
-                      action.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                  </div>
-                </div>
-              </div>
+        <h3 class="code">.rounded-sm</h3>
+        <h3 class="code">.rounded-lg</h3><br />
+        <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png"
+          class="rounded-sm bg-primary bg-opacity-25 p-2" width="64" height="auto">
+        <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png"
+          class="rounded-lg bg-primary bg-opacity-25 p-2" width="64" height="auto">
 
-              <h3 class="code">.card-columns</h3>
-              <div class="card-columns">
-                <div class="card">
-                  <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png"
-                    class="card-img-top" width="100%" height="auto">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title that wraps to a new line</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                      additional content. This content is a little bit longer.</p>
-                  </div>
-                </div>
-                <div class="card p-3">
-                  <blockquote class="blockquote mb-0 card-body">
-                    <p>A well-known quote, contained in a blockquote element.</p>
-                    <footer class="blockquote-footer">
-                      <small class="text-muted">
-                        Someone famous in <cite title="Source Title">Source Title</cite>
-                      </small>
-                    </footer>
-                  </blockquote>
-                </div>
-                <div class="card">
-                  <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png"
-                    class="card-img-top" width="100%" height="auto">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.
-                    </p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                  </div>
-                </div>
-                <div class="card bg-primary text-white text-center p-3">
-                  <blockquote class="blockquote mb-0">
-                    <p>A well-known quote, contained in a blockquote element.</p>
-                    <footer class="blockquote-footer text-white">
-                      <small>
-                        Someone famous in <cite title="Source Title">Source Title</cite>
-                      </small>
-                    </footer>
-                  </blockquote>
-                </div>
-                <div class="card text-center">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This card has a regular title and short paragraphy of text below it.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                  </div>
-                </div>
-                <div class="card">
-                  <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" class="card-img"
-                    width="100%" height="auto">
-                </div>
-                <div class="card p-3 text-right">
-                  <blockquote class="blockquote mb-0">
-                    <p>A well-known quote, contained in a blockquote element.</p>
-                    <footer class="blockquote-footer">
-                      <small class="text-muted">
-                        Someone famous in <cite title="Source Title">Source Title</cite>
-                      </small>
-                    </footer>
-                  </blockquote>
-                </div>
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is another card with title and supporting text below. This card has some
-                      additional content to make it slightly taller overall.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                  </div>
-                </div>
-              </div>
+        <h2 class="title" id="helpers">Helpers</h2>
+        <h3 class="title">Ratio</h3>
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/udewxNOUUUo?rel=0"
+            allowfullscreen></iframe>
+        </div>
 
-              <h3 class="title">Card based accordion</h3>
-              <div class="accordion" id="accordionExample">
-                <div class="card">
-                  <div class="card-header" id="headingOne">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
-                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Collapsible Group Item #1
-                      </button>
-                    </h2>
-                  </div>
-
-                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                    data-parent="#accordionExample">
-                    <div class="card-body">
-                      Some placeholder content for the first accordion panel. This panel is shown by default, thanks to
-                      the <code>.show</code> class.
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header" id="headingTwo">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
-                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Collapsible Group Item #2
-                      </button>
-                    </h2>
-                  </div>
-                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                    <div class="card-body">
-                      Some placeholder content for the second accordion panel. This panel is hidden by default.
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header" id="headingThree">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
-                        data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Collapsible Group Item #3
-                      </button>
-                    </h2>
-                  </div>
-                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                    data-parent="#accordionExample">
-                    <div class="card-body">
-                      And lastly, the placeholder content for the third and final accordion panel. This panel is hidden
-                      by default.
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <h2 class="title" id="close">Close</h2>
-              <h3 class="code">.close</h3><br />
-              <button type="button" class="close" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-
-              <h2 class="title" id="jumbotron">Jumbotron</h2>
-              <div class="jumbotron">
-                <h1 class="display-4">Hello, world!</h1>
-                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra
-                  attention to featured content or information.</p>
-                <hr class="my-4">
-                <p>It uses utility classes for typography and spacing to space content out within the larger container.
-                </p>
-                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-              </div>
-
-              <h2 class="title" id="utilities">Utilities</h2>
-              <h3 class="code">.text-monospace</h3>
-              <p class="text-monospace">This is in monospace</p>
-              <h3 class="code">.text-hide</h3>
-              <p class="text-hide">This is hide</p>
-              <h3 class="code">.font-weight-bold</h3> ... <h3 class="code">.font-italic</h3>
-              <p class="font-weight-bold">Bold text.</p>
-              <p class="font-weight-bolder">Bolder weight text (relative to the parent element).</p>
-              <p class="font-weight-normal">Normal weight text.</p>
-              <p class="font-weight-light">Light weight text.</p>
-              <p class="font-weight-lighter">Lighter weight text (relative to the parent element).</p>
-              <p class="font-italic">Italic text.</p>
-              <h3 class="code">.rounded-sm</h3>
-              <h3 class="code">.rounded-lg</h3><br />
-              <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png"
-                class="rounded-sm bg-primary bg-opacity-25 p-2" width="64" height="auto">
-              <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png"
-                class="rounded-lg bg-primary bg-opacity-25 p-2" width="64" height="auto">
-
-              <h2 class="title" id="helpers">Helpers</h2>
-              <h3 class="title">Ratio</h3>
-              <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/udewxNOUUUo?rel=0"
-                  allowfullscreen></iframe>
-              </div>
-
-              <h2 class="title" id="screen-readers">Screen readers</h2>
-              <h3 class="code">.sr-only</h3>
-              <h3 class="code">.sr-only-focusable</h3>
-              <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+        <h2 class="title" id="screen-readers">Screen readers</h2>
+        <h3 class="code">.sr-only</h3>
+        <h3 class="code">.sr-only-focusable</h3>
+        <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
       </div>
     </div>
   </div>
