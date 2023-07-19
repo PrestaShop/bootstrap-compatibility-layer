@@ -1,0 +1,17 @@
+// Badge
+@each $name, $color in $theme-colors {
+  $bg: map-get($theme-colors, $name);
+  .badge-#{$name} {
+    background-color: #{$bg};
+    @if $name == light or $name == warning {
+      color: var(--bs-dark);
+    } @else {
+      color: var(--bs-white);
+    }
+  }
+}
+
+.badge-pill {
+  --bs-badge-pill-border-radius: 10rem;
+  border-radius: var(--bs-badge-pill-border-radius);
+}

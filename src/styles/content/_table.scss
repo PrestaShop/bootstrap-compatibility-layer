@@ -1,0 +1,26 @@
+// Table
+.table {
+  .thead-dark {
+    --bs-table-color: #ffffff;
+    --bs-table-bg: #212529;
+    --bs-table-border-color: #373b3e;
+
+    th {
+      background-color: var(--bs-table-bg);
+      color: var(--bs-table-color);
+      border-color: var(--bs-table-border-color);
+    }
+  }
+
+  .thead-light {
+    --bs-table-color: #000000;
+    --bs-table-bg: #f8f9fa;
+    --bs-table-border-color: #dfe0e1;
+
+    th {
+      background-color: var(--bs-table-bg);
+      color: var(--bs-table-color);
+      border-color: var(--bs-table-border-color);
+    }
+  }
+}

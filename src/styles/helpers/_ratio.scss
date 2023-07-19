@@ -1,0 +1,26 @@
+// Ratio
+.embed-responsive {
+  position: relative;
+  width: 100%;
+
+  &::before {
+    content: "";
+    display: block;
+    padding-top: var(--bs-aspect-ratio);
+  }
+
+  > *,
+  .embed-responsive-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@each $name, $ratio in $aspect-ratios {
+  .embed-responsive-#{$name} {
+    --bs-aspect-ratio: #{$ratio};
+  }
+}

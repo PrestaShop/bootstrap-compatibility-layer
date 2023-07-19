@@ -6,456 +6,982 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bootstrap 4 markup with compatibility layer demo</title>
   <style>
-      body {
-          padding: 0 0 80px 0;
-      }
+    body {
+      padding: 0 0 80px 0;
+    }
 
-      h1.title {
-          margin: 60px 0 15px 0 !important;
-          border-bottom: 2px solid lightblue;
-      }
+    h1.sep {
+      padding: 1rem;
+      margin-top: 3rem;
+      border-radius: 0.25rem;
+      background-color: #efefef;
+      font-weight: 600;
+    }
 
-      h2.title {
-          font-size: 1.5rem;
-          font-weight: 600;
-          margin: 20px 0 15px 0 !important;
-          border-bottom: 2px solid lightgray;
-      }
+    h1#js::before {
+      content: '🧑‍💻';
+      padding-right: 1rem;
+    }
 
-      #toc-container {
-          position: sticky;
-          top: 20px;
-      }
+    h1#css::before {
+      content: '🎨';
+      padding-right: 1rem;
+    }
 
-      #toc-container ul {
-          list-style-type: none;
-      }
+    h2.title {
+      margin: 60px 0 15px 0;
+      border-bottom: 2px solid lightblue;
+    }
 
-      #toc-container ul li a {
-          display: inline-block;
-          padding: 4px 0;
-          color: #999;
-          text-decoration: none;
-          transition: all 0.3s;
-      }
-      #toc-container ul li a:hover,
-      #toc-container ul li a:focus,
-      #toc-container ul li a:active,
-      #toc-container ul li a.active{
-          color: lightblue;
-          transform: translateX(4px);
-      }
+    h3.title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 20px 0 15px 0;
+      border-bottom: 2px solid lightgray;
+    }
 
-      #toc-container ul li a::before {
-          content: '-';
-          display: inline-block;
-          margin-right: 4px;
-      }
+    h3.code {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      color: #df4c4c;
+      word-wrap: break-word;
+      margin-top: 1rem;
+      padding: 0.25rem 0.475rem;
+      background: #efefef;
+      border-radius: 0.275rem;
+    }
 
-      /* Scrollspy */
-      .scrollspy-example {
-          position: relative;
-          height: 200px;
-          margin-top: 0.5rem;
-          overflow: auto;
-      }
+    #toc-container {
+      position: sticky;
+      top: 20px;
+    }
+
+    #toc-container ul {
+      list-style-type: none;
+    }
+
+    #toc-container ul li.sep a {
+      color: lightblue;
+      font-weight: 600;
+      margin-top: 15px;
+    }
+
+    #toc-container ul li.sep a::before {
+      display: none;
+    }
+
+    #toc-container ul li a {
+      display: inline-block;
+      padding: 4px 0;
+      color: #999;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    #toc-container ul li a:hover,
+    #toc-container ul li a:focus,
+    #toc-container ul li a:active,
+    #toc-container ul li a.active {
+      color: lightblue;
+      transform: translateX(4px);
+    }
+
+    #toc-container ul li a::before {
+      content: '-';
+      display: inline-block;
+      margin-right: 4px;
+    }
+
+    /* Scrollspy */
+    .scrollspy-example {
+      position: relative;
+      height: 200px;
+      margin-top: 0.5rem;
+      overflow: auto;
+    }
+
+    /* Styles for test */
+    .colored-col>[class*=col] {
+      padding-block: 1rem;
+      background-color: lightcyan;
+      border: 1px solid lightskyblue;
+    }
   </style>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <link href="../dist/bootstrap-compatibility-layer.min.css" rel="stylesheet">
 </head>
 
 <body>
-<div class="container">
-  <div class="row">
-    <div class="col-12 col-md-2">
-      <div id="toc-container"></div>
-    </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-2">
+        <div id="toc-container"></div>
+      </div>
 
-    <div class="col-12 col-md-10">
-      <div class="alert alert-primary mt-4">
-        💡 Components page for Bootstrap v4 / v5 backward compatibility
-      </div>
-      <h1 class="title" id="dropdown">Dropdown</h1>
-      <h2 class="title">Classic</h2>
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                data-toggle="dropdown">
-          Dropdown button
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+      <div class="col-12 col-md-10">
+        <div class="alert alert-primary mt-4">
+          💡 Components page for Bootstrap v4 / v5 backward compatibility
         </div>
-      </div>
-      <h2 class="title">Options</h2>
-      <div class="d-flex gap-1">
-        <div class="dropdown mr-1">
-          <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false"
-                  data-offset="10,20">
-            Offset
+
+        <h1 class="title sep" id="js">Javascript Components</h1>
+
+        <h2 class="title mt-4" id="dropdown">Dropdown</h2>
+        <h3 class="title">Classic</h3>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown">
+            Dropdown button
           </button>
-          <div class="dropdown-menu">
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="#">Action</a>
             <a class="dropdown-item" href="#">Another action</a>
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
         </div>
-        <div class="btn-group">
-          <button type="button" class="btn btn-secondary">Reference</button>
-          <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
-                  aria-expanded="false" data-reference="parent"></button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
-          </div>
-        </div>
-      </div>
 
-      <h1 class="title" id="carousel">Carousel</h1>
-      <div id="carouselExampleControls" class="carousel slide" data-ride="true">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleControls" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleControls" data-slide-to="1"></li>
-          <li data-target="#carouselExampleControls" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1280px-Image_created_with_a_mobile_phone.png"
-              class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img
-              src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80"
-              class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPCXISA7AWonO3J24GKCgtJ9e4OTuaJHSBM7rcN3j28GfR6eJAJTe1Gi_AlJpG6wuFnCs&usqp=CAU"
-              class="d-block w-100" alt="...">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-target="#carouselExampleControls" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        </button>
-      </div>
-
-      <h1 class="title" id="alert">Alert</h1>
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-      <h1 class="title" id="collapse">Collapse</h1>
-
-      <h2 class="title">Accordion</h2>
-      <div class="accordion" id="accordionExample">
-        <div class="card">
-          <div class="card-header" id="headingOne">
-            <h2 class="mb-0">
-              <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
-                      data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Collapsible Group Item #1
-              </button>
-            </h2>
-          </div>
-
-          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-            <div class="card-body">
-              Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the
-              <code>.show</code> class.
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header" id="headingTwo">
-            <h2 class="mb-0">
-              <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
-                      data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Collapsible Group Item #2
-              </button>
-            </h2>
-          </div>
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-            <div class="card-body">
-              Some placeholder content for the second accordion panel. This panel is hidden by default.
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header" id="headingThree">
-            <h2 class="mb-0">
-              <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
-                      data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                Collapsible Group Item #3
-              </button>
-            </h2>
-          </div>
-          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-            <div class="card-body">
-              And lastly, the placeholder content for the third and final accordion panel. This panel is hidden by
-              default.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <h2 class="title">Example</h2>
-      <p>
-        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
-           aria-controls="collapseExample">
-          Link with href
-        </a>
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
-                aria-expanded="false" aria-controls="collapseExample">
-          Button with data-target
-        </button>
-      </p>
-      <div class="collapse" id="collapseExample">
-        <div class="card card-body">
-          Some placeholder content for the collapse component. This panel is hidden by default but revealed when the
-          user
-          activates the relevant trigger.
-        </div>
-      </div>
-
-      <h1 class="title" id="list">List group</h1>
-      <div class="row">
-        <div class="col-4">
-          <div class="list-group" id="list-tab" role="tablist">
-            <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
-               href="#list-home" role="tab" aria-controls="home">Home</a>
-            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-               href="#list-profile" role="tab" aria-controls="profile">Profile</a>
-            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list"
-               href="#list-messages" role="tab" aria-controls="messages">Messages</a>
-            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list"
-               href="#list-settings" role="tab" aria-controls="settings">Settings</a>
-          </div>
-        </div>
-        <div class="col-8">
-          <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">1
-            </div>
-            <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">2</div>
-            <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">3</div>
-            <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">4</div>
-          </div>
-        </div>
-      </div>
-
-      <h1 class="title" id="modal">Modal</h1>
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Launch demo modal
-      </button>
-
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <h1 class="title" id="navbar">Navbar</h1>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                Dropdown
-              </a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">Disabled</a>
-            </li>
-          </ul>
-          <form class="d-flex gap-1 form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
-        </div>
-      </nav>
-
-      <h1 class="title" id="tabs">Tabs</h1>
-      <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="home-tab" data-toggle="tab" data-target="#home" type="button" role="tab"
-                  aria-controls="home" aria-selected="true">Home</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="profile-tab" data-toggle="tab" data-target="#profile" type="button" role="tab"
-                  aria-controls="profile" aria-selected="false">Profile</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="contact-tab" data-toggle="tab" data-target="#contact" type="button" role="tab"
-                  aria-controls="contact" aria-selected="false">Contact</button>
-        </li>
-      </ul>
-      <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">1</div>
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">2</div>
-        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">3</div>
-      </div>
-
-      <h1 class="title" id="popovers">Popovers</h1>
-      <a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus"
-         title="Dismissible popover"
-         data-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>
-
-      <h1 class="title" id="scrollspy">Scrollspy</h1>
-      <nav id="navbar-example2" class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <ul class="nav nav-pills">
-          <li class="nav-item">
-            <a class="nav-link" href="#fat">@fat</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#mdo">@mdo</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-               aria-expanded="false">Dropdown</a>
+        <h3 class="title">Options</h3>
+        <div class="d-flex gap-1">
+          <div class="dropdown mr-1">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false"
+              data-offset="10,20">
+              Offset
+            </button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#one">one</a>
-              <a class="dropdown-item" href="#two">two</a>
-              <div role="separator" class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#three">three</a>
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
             </div>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-secondary">Reference</button>
+            <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+              aria-expanded="false" data-reference="parent"></button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Separated link</a>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="title" id="carousel">Carousel</h2>
+        <div id="carouselExampleControls" class="carousel slide" data-ride="true">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleControls" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleControls" data-slide-to="1"></li>
+            <li data-target="#carouselExampleControls" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                src="https://images.unsplash.com/photo-1588426651288-7e828a77f413?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
+                class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img
+                src="https://images.unsplash.com/photo-1572250778758-f1f23af2df4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
+                class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img
+                src="https://images.unsplash.com/photo-1565294346415-dd9884b51e5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
+                class="d-block w-100" alt="...">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-target="#carouselExampleControls" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <h2 class="title" id="alert">Alert</h2>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <h2 class="title" id="collapse">Collapse</h2>
+        <h3 class="title">Accordion</h3>
+        <div class="accordion" id="accordionExample">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h3 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                  data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Collapsible Group Item #1
+                </button>
+              </h3>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body">
+                Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the
+                <code>.show</code> class.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h3 class="mb-0">
+                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                  data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Collapsible Group Item #2
+                </button>
+              </h3>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+              <div class="card-body">
+                Some placeholder content for the second accordion panel. This panel is hidden by default.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h3 class="mb-0">
+                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                  data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Collapsible Group Item #3
+                </button>
+              </h3>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+              <div class="card-body">
+                And lastly, the placeholder content for the third and final accordion panel. This panel is hidden by
+                default.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="title">Example</h3>
+        <p>
+          <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+            aria-controls="collapseExample">
+            Link with href
+          </a>
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
+            aria-expanded="false" aria-controls="collapseExample">
+            Button with data-target
+          </button>
+        </p>
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body">
+            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the
+            user
+            activates the relevant trigger.
+          </div>
+        </div>
+
+        <h2 class="title" id="list">List group</h2>
+        <div class="row">
+          <div class="col-4">
+            <div class="list-group" id="list-tab" role="tablist">
+              <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
+                href="#list-home" role="tab" aria-controls="home">Home</a>
+              <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
+                href="#list-profile" role="tab" aria-controls="profile">Profile</a>
+              <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list"
+                href="#list-messages" role="tab" aria-controls="messages">Messages</a>
+              <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list"
+                href="#list-settings" role="tab" aria-controls="settings">Settings</a>
+            </div>
+          </div>
+          <div class="col-8">
+            <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">1
+              </div>
+              <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">2</div>
+              <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">3</div>
+              <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">4</div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="title" id="modal">Modal</h2>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          Launch demo modal
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="title" id="navbar">Navbar</h2>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+              </li>
+            </ul>
+            <form class="d-flex gap-1 form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </div>
+        </nav>
+
+        <h2 class="title" id="tabs">Tabs</h2>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-toggle="tab" data-target="#home" type="button" role="tab"
+              aria-controls="home" aria-selected="true">Home</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-toggle="tab" data-target="#profile" type="button" role="tab"
+              aria-controls="profile" aria-selected="false">Profile</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="contact-tab" data-toggle="tab" data-target="#contact" type="button" role="tab"
+              aria-controls="contact" aria-selected="false">Contact</button>
           </li>
         </ul>
-      </nav>
-      <div data-spy="scroll" data-target="#navbar-example2" data-offset="0" class="scrollspy-example">
-        <h4 id="fat">@fat</h4>
-        <p>Sed eros diam, mollis vel lacinia quis, facilisis a tortor. Aenean eu fringilla lorem. Nam egestas
-          efficitur arcu non porta. Curabitur suscipit justo vel nulla ullamcorper, non scelerisque nibh lacinia.
-          Nulla facilisi. Fusce id lectus quis leo hendrerit aliquam et vitae urna. Duis justo augue, rutrum quis
-          justo posuere, tempus imperdiet velit.</p>
-        <h4 id="mdo">@mdo</h4>
-        <p>Sed eros diam, mollis vel lacinia quis, facilisis a tortor. Aenean eu fringilla lorem. Nam egestas
-          efficitur arcu non porta. Curabitur suscipit justo vel nulla ullamcorper, non scelerisque nibh lacinia.
-          Nulla facilisi. Fusce id lectus quis leo hendrerit aliquam et vitae urna. Duis justo augue, rutrum quis
-          justo posuere, tempus imperdiet velit.</p>
-        <h4 id="one">one</h4>
-        <p>Sed eros diam, mollis vel lacinia quis, facilisis a tortor. Aenean eu fringilla lorem. Nam egestas
-          efficitur arcu non porta. Curabitur suscipit justo vel nulla ullamcorper, non scelerisque nibh lacinia.
-          Nulla facilisi. Fusce id lectus quis leo hendrerit aliquam et vitae urna. Duis justo augue, rutrum quis
-          justo posuere, tempus imperdiet velit.</p>
-        <h4 id="two">two</h4>
-        <p>Sed eros diam, mollis vel lacinia quis, facilisis a tortor. Aenean eu fringilla lorem. Nam egestas
-          efficitur arcu non porta. Curabitur suscipit justo vel nulla ullamcorper, non scelerisque nibh lacinia.
-          Nulla facilisi. Fusce id lectus quis leo hendrerit aliquam et vitae urna. Duis justo augue, rutrum quis
-          justo posuere, tempus imperdiet velit.</p>
-        <h4 id="three">three</h4>
-        <p>Sed eros diam, mollis vel lacinia quis, facilisis a tortor. Aenean eu fringilla lorem. Nam egestas
-          efficitur arcu non porta. Curabitur suscipit justo vel nulla ullamcorper, non scelerisque nibh lacinia.
-          Nulla facilisi. Fusce id lectus quis leo hendrerit aliquam et vitae urna. Duis justo augue, rutrum quis
-          justo posuere, tempus imperdiet velit.</p>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">1</div>
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">2</div>
+          <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">3</div>
+        </div>
+
+        <h2 class="title" id="popovers">Popovers</h2>
+        <a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus"
+          title="Dismissible popover"
+          data-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>
+
+        <h2 class="title" id="scrollspy">Scrollspy</h2>
+        <nav id="navbar-example2" class="navbar navbar-light bg-light">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link" href="#fat">@fat</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#mdo">@mdo</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                aria-expanded="false">Dropdown</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#one">one</a>
+                <a class="dropdown-item" href="#two">two</a>
+                <div role="separator" class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#three">three</a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <div data-spy="scroll" data-target="#navbar-example2" data-offset="0" class="scrollspy-example">
+          <h4 id="fat">@fat</h4>
+          <p>Sed eros diam, mollis vel lacinia quis, facilisis a tortor. Aenean eu fringilla lorem. Nam egestas
+            efficitur arcu non porta. Curabitur suscipit justo vel nulla ullamcorper, non scelerisque nibh lacinia.
+            Nulla facilisi. Fusce id lectus quis leo hendrerit aliquam et vitae urna. Duis justo augue, rutrum quis
+            justo posuere, tempus imperdiet velit.</p>
+          <h4 id="mdo">@mdo</h4>
+          <p>Sed eros diam, mollis vel lacinia quis, facilisis a tortor. Aenean eu fringilla lorem. Nam egestas
+            efficitur arcu non porta. Curabitur suscipit justo vel nulla ullamcorper, non scelerisque nibh lacinia.
+            Nulla facilisi. Fusce id lectus quis leo hendrerit aliquam et vitae urna. Duis justo augue, rutrum quis
+            justo posuere, tempus imperdiet velit.</p>
+          <h4 id="one">one</h4>
+          <p>Sed eros diam, mollis vel lacinia quis, facilisis a tortor. Aenean eu fringilla lorem. Nam egestas
+            efficitur arcu non porta. Curabitur suscipit justo vel nulla ullamcorper, non scelerisque nibh lacinia.
+            Nulla facilisi. Fusce id lectus quis leo hendrerit aliquam et vitae urna. Duis justo augue, rutrum quis
+            justo posuere, tempus imperdiet velit.</p>
+          <h4 id="two">two</h4>
+          <p>Sed eros diam, mollis vel lacinia quis, facilisis a tortor. Aenean eu fringilla lorem. Nam egestas
+            efficitur arcu non porta. Curabitur suscipit justo vel nulla ullamcorper, non scelerisque nibh lacinia.
+            Nulla facilisi. Fusce id lectus quis leo hendrerit aliquam et vitae urna. Duis justo augue, rutrum quis
+            justo posuere, tempus imperdiet velit.</p>
+          <h4 id="three">three</h4>
+          <p>Sed eros diam, mollis vel lacinia quis, facilisis a tortor. Aenean eu fringilla lorem. Nam egestas
+            efficitur arcu non porta. Curabitur suscipit justo vel nulla ullamcorper, non scelerisque nibh lacinia.
+            Nulla facilisi. Fusce id lectus quis leo hendrerit aliquam et vitae urna. Duis justo augue, rutrum quis
+            justo posuere, tempus imperdiet velit.</p>
+        </div>
+
+        <h2 class="title" id="tooltip">Tooltips</h2>
+        <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
+          title="Tooltip on top">
+          Tooltip on top
+        </button>
+        <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right"
+          title="Tooltip on right">
+          Tooltip on right
+        </button>
+        <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom"
+          title="Tooltip on bottom">
+          Tooltip on bottom
+        </button>
+        <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left"
+          title="Tooltip on left">
+          Tooltip on left
+        </button>
+
+        <h1 class="title sep" id="css">CSS components</h1>
+
+        <h2 class="title mt-4" id="buttons">Buttons</h2>
+        <h3 class="code">.btn-block</h3>
+        <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
+        <button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
+
+        <h2 class="title" id="grid">Grid</h2>
+        <h3 class="code">.no-gutters</h3>
+        <div class="row no-gutters colored-col">
+          <div class="col-sm-6 col-md-8">.col-sm-6 .col-md-8</div>
+          <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+        </div>
+
+        <h3 class="code">.order-*</h3>
+        <div class="container">
+          <div class="row colored-col">
+            <div class="col">
+              First in DOM, no order applied
+            </div>
+            <div class="col order-12">
+              Second in DOM, with a larger order
+            </div>
+            <div class="col order-1">
+              Third in DOM, with an order of 1
+            </div>
+          </div>
+        </div>
+
+        <h3 class="code">.media</h3>
+        <div class="media">
+          <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" class="mr-3" width="64">
+          <div class="media-body">
+            <h5 class="mt-0">Media heading</h5>
+            <p>Will you do the same for me? It's time to face the music I'm no longer your muse. Heard it's beautiful,
+              be the judge and my girls gonna take a vote. I can feel a phoenix inside of me. Heaven is jealous of our
+              love, angels are crying from up above. Yeah, you take me to utopia.</p>
+          </div>
+        </div>
+
+        <h2 class="title" id="content">Content / Reboot / ...</h2>
+        <h3 class="code">.thead-dark</h3>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Handle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Larry</td>
+              <td>the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 class="code">.thead-light</h3>
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Handle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Larry</td>
+              <td>the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 class="code">.pre-scrollable</h3>
+        <div class="row">
+          <div class="col-6 pre-scrollable">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem inventore optio numquam. Quos
+              aliquam cum adipisci vero asperiores officia voluptates facilis veniam harum perspiciatis praesentium
+              ducimus, vel eligendi qui libero.</p>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem inventore optio numquam. Quos
+              aliquam cum adipisci vero asperiores officia voluptates facilis veniam harum perspiciatis praesentium
+              ducimus, vel eligendi qui libero.
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem inventore optio numquam. Quos
+              aliquam cum adipisci vero asperiores officia voluptates facilis veniam harum perspiciatis praesentium
+              ducimus, vel eligendi qui libero.
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem inventore optio numquam. Quos
+              aliquam cum adipisci vero asperiores officia voluptates facilis veniam harum perspiciatis praesentium
+              ducimus, vel eligendi qui libero.</p>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem inventore optio numquam. Quos
+              aliquam cum adipisci vero asperiores officia voluptates facilis veniam harum perspiciatis praesentium
+              ducimus, vel eligendi qui libero.
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem inventore optio numquam. Quos
+              aliquam cum adipisci vero asperiores officia voluptates facilis veniam harum perspiciatis praesentium
+              ducimus, vel eligendi qui libero.</p>
+          </div>
+        </div>
+
+        <h3 class="code">.text-justify</h3>
+        <p class="text-justify">Some placeholder text to demonstrate justified text alignment. Will you do the same for
+          me? It's time to face the music I'm no longer your muse. Heard it's beautiful, be the judge and my girls gonna
+          take a vote. I can feel a phoenix inside of me. Heaven is jealous of our love, angels are crying from up
+          above. Yeah, you take me to utopia.</p>
+
+        <h2 class="title" id="forms">Forms</h2>
+        <h3 class="title">Form elements</h3>
+        <form>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Email</label>
+              <input type="email" class="form-control" id="inputEmail4">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Password</label>
+              <input type="password" class="form-control" id="inputPassword4">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputAddress">Address</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+          </div>
+          <div class="form-group">
+            <label for="inputAddress2">Address 2</label>
+            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputCity">City</label>
+              <input type="text" class="form-control" id="inputCity">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputState">State</label>
+              <select id="inputState" class="form-control">
+                <option selected>Choose...</option>
+                <option>...</option>
+              </select>
+            </div>
+            <div class="form-group col-md-2">
+              <label for="inputZip">Zip</label>
+              <input type="text" class="form-control" id="inputZip">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="gridCheck">
+              <label class="form-check-label" for="gridCheck">
+                Check me out
+              </label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Sign in</button>
+        </form>
+
+        <h3 class="title">Input group</h3>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">@</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+            aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
+            aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">@example.com</span>
+          </div>
+        </div>
+
+        <label for="basic-url">Your vanity URL</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
+          </div>
+          <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">$</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+          <div class="input-group-append">
+            <span class="input-group-text">.00</span>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">With textarea</span>
+          </div>
+          <textarea class="form-control" aria-label="With textarea"></textarea>
+        </div>
+
+        <h2 class="title" id="badges">Badges</h2>
+        <h3 class="title">Badge states</h3>
+        <span class="badge badge-primary">Primary</span>
+        <span class="badge badge-secondary">Secondary</span>
+        <span class="badge badge-success">Success</span>
+        <span class="badge badge-danger">Danger</span>
+        <span class="badge badge-warning">Warning</span>
+        <span class="badge badge-info">Info</span>
+        <span class="badge badge-light">Light</span>
+        <span class="badge badge-dark">Dark</span>
+        <br />
+
+        <h3 class="code">.badge-pill</h3><br />
+        <span class="badge badge-pill badge-primary">Primary</span>
+        <span class="badge badge-pill badge-secondary">Secondary</span>
+        <span class="badge badge-pill badge-success">Success</span>
+        <span class="badge badge-pill badge-danger">Danger</span>
+        <span class="badge badge-pill badge-warning">Warning</span>
+        <span class="badge badge-pill badge-info">Info</span>
+        <span class="badge badge-pill badge-light">Light</span>
+        <span class="badge badge-pill badge-dark">Dark</span>
+
+        <h2 class="title" id="cards">Cards</h2>
+        <h3 class="code">.card-deck</h3>
+        <div class="card-deck">
+          <div class="card">
+            <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" class="card-img-top"
+              width="100%" height="auto">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" class="card-img-top"
+              width="100%" height="auto">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This card has supporting text below as a natural lead-in to additional content.
+              </p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" class="card-img-top"
+              width="100%" height="auto">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                additional content. This card has even longer content than the first to show that equal height
+                action.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="code">.card-columns</h3>
+        <div class="card-columns">
+          <div class="card">
+            <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" class="card-img-top"
+              width="100%" height="auto">
+            <div class="card-body">
+              <h5 class="card-title">Card title that wraps to a new line</h5>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                additional content. This content is a little bit longer.</p>
+            </div>
+          </div>
+          <div class="card p-3">
+            <blockquote class="blockquote mb-0 card-body">
+              <p>A well-known quote, contained in a blockquote element.</p>
+              <footer class="blockquote-footer">
+                <small class="text-muted">
+                  Someone famous in <cite title="Source Title">Source Title</cite>
+                </small>
+              </footer>
+            </blockquote>
+          </div>
+          <div class="card">
+            <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" class="card-img-top"
+              width="100%" height="auto">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This card has supporting text below as a natural lead-in to additional content.
+              </p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="card bg-primary text-white text-center p-3">
+            <blockquote class="blockquote mb-0">
+              <p>A well-known quote, contained in a blockquote element.</p>
+              <footer class="blockquote-footer text-white">
+                <small>
+                  Someone famous in <cite title="Source Title">Source Title</cite>
+                </small>
+              </footer>
+            </blockquote>
+          </div>
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This card has a regular title and short paragraphy of text below it.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" class="card-img"
+              width="100%" height="auto">
+          </div>
+          <div class="card p-3 text-right">
+            <blockquote class="blockquote mb-0">
+              <p>A well-known quote, contained in a blockquote element.</p>
+              <footer class="blockquote-footer">
+                <small class="text-muted">
+                  Someone famous in <cite title="Source Title">Source Title</cite>
+                </small>
+              </footer>
+            </blockquote>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is another card with title and supporting text below. This card has some
+                additional content to make it slightly taller overall.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="title">Card based accordion</h3>
+        <div class="accordion" id="accordionExample">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                  data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Collapsible Group Item #1
+                </button>
+              </h2>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body">
+                Some placeholder content for the first accordion panel. This panel is shown by default, thanks to
+                the <code>.show</code> class.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                  data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Collapsible Group Item #2
+                </button>
+              </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+              <div class="card-body">
+                Some placeholder content for the second accordion panel. This panel is hidden by default.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                  data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Collapsible Group Item #3
+                </button>
+              </h2>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+              <div class="card-body">
+                And lastly, the placeholder content for the third and final accordion panel. This panel is hidden
+                by default.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="title" id="close">Close</h2>
+        <h3 class="code">.close</h3><br />
+        <button type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+        <h2 class="title" id="jumbotron">Jumbotron</h2>
+        <div class="jumbotron">
+          <h1 class="display-4">Hello, world!</h1>
+          <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra
+            attention to featured content or information.</p>
+          <hr class="my-4">
+          <p>It uses utility classes for typography and spacing to space content out within the larger container.
+          </p>
+          <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        </div>
+
+        <h2 class="title" id="utilities">Utilities</h2>
+        <h3 class="code"><b>.left-*</b> and <b>.right-*</b> become <b>.start-*</b> and <b>.end-*</b></h3><br />
+        <h3 class="code"><b>.float-left</b> and <b>.float-right</b> become <b>.float-start</b> and <b>.float-end</b>
+        </h3><br />
+        <h3 class="code"><b>.border-left</b> and <b>.border-right</b> become <b>.border-start</b> and <b>.border-end</b>
+        </h3><br />
+        <h3 class="code"><b>.rounded-left</b> and <b>.rounded-right</b> become <b>.rounded-start</b> and
+          <b>.rounded-end</b></h3><br />
+        <h3 class="code"><b>.ml-*</b> and <b>.mr-*</b> become <b>.ms-*</b> and <b>.me-*</b></h3><br />
+        <h3 class="code"><b>.pl-*</b> and <b>.pr-*</b> become <b>.ps-*</b> and <b>.pe-*</b></h3><br />
+        <h3 class="code"><b>.text-left</b> and <b>.text-right</b> become <b>.text-start</b> and <b>.text-end</b></h3>
+        <br />
+
+        <h3 class="code">.text-monospace</h3>
+        <p class="text-monospace">This is in monospace</p>
+
+        <h3 class="code">.text-hide</h3>
+        <p class="text-hide">This is hide</p>
+
+        <h3 class="code">.font-weight-*</h3> ... <h3 class="code">.font-"style"</h3>
+        <p class="font-weight-bold">Bold text.</p>
+        <p class="font-weight-bolder">Bolder weight text (relative to the parent element).</p>
+        <p class="font-weight-normal">Normal weight text.</p>
+        <p class="font-weight-light">Light weight text.</p>
+        <p class="font-weight-lighter">Lighter weight text (relative to the parent element).</p>
+        <p class="font-italic">Italic text.</p>
+
+        <h3 class="code">.rounded-sm</h3>
+        <h3 class="code">.rounded-lg</h3><br />
+        <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png"
+          class="rounded-sm bg-primary bg-opacity-25 p-2" width="64" height="auto">
+        <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png"
+          class="rounded-lg bg-primary bg-opacity-25 p-2" width="64" height="auto">
+
+        <h2 class="title" id="helpers">Helpers</h2>
+        <h3 class="title">Ratio</h3>
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/udewxNOUUUo?rel=0"
+            allowfullscreen></iframe>
+        </div>
+
+        <h2 class="title" id="screen-readers">Screen readers</h2>
+        <h3 class="code">.sr-only</h3>
+        <h3 class="code">.sr-only-focusable</h3>
+        <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
       </div>
-
-      <h1 class="title" id="tooltip">Tooltips</h1>
-      <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
-        Tooltip on top
-      </button>
-      <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Tooltip on right">
-        Tooltip on right
-      </button>
-      <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">
-        Tooltip on bottom
-      </button>
-      <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" title="Tooltip on left">
-        Tooltip on left
-      </button>
-
     </div>
   </div>
-  <div class='test'></div>
-</div>
 
-<!-- Load Bootstrap v5-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
-<script
-src="https://code.jquery.com/jquery-3.7.0.min.js"
-integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-crossorigin="anonymous"></script>
-<script src="../dist/bootstrap-compatibility-layer.umd.min.js"></script>
-<script>
-  $('[data-toggle="popover"]').popover()
+  <!-- Load Bootstrap v5-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script src="../dist/bootstrap-compatibility-layer.umd.min.js"></script>
+  <script>
+    $('[data-toggle="popover"]').popover()
 
-  $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="tooltip"]').tooltip()
 
-  // Table of content
-  const headings = document.querySelectorAll('h1');
-  const tocList = document.createElement('ul');
+    // Table of content
+    const headings = document.querySelectorAll('h1.title, h2.title');
+    const tocList = document.createElement('ul');
 
-  headings.forEach((heading) => {
-    const tocItem = document.createElement('li');
-    const link = document.createElement('a');
+    headings.forEach((heading) => {
+      const tocItem = document.createElement('li');
+      const link = document.createElement('a');
 
-    link.href = '#' + heading.id;
-    link.textContent = heading.textContent;
-    tocItem.appendChild(link);
-    tocList.appendChild(tocItem);
-  });
+      if (heading.classList.contains('sep')) {
+        tocItem.classList.add('sep');
+      }
 
-  // Append the table of contents list to #toc-container
-  const tocContainer = document.getElementById('toc-container');
-  tocContainer.appendChild(tocList);
-
-  const tocLinks = document.querySelectorAll('#toc-container a');
-  tocLinks.forEach((link) => {
-    link.addEventListener('click', () => {
-      tocLinks.forEach((link) => {
-        link.classList.remove("active");
-      });
-      link.classList.add("active");
+      link.href = '#' + heading.id;
+      link.textContent = heading.textContent;
+      tocItem.appendChild(link);
+      tocList.appendChild(tocItem);
     });
-  });
-</script>
+
+    // Append the table of contents list to #toc-container
+    const tocContainer = document.getElementById('toc-container');
+    tocContainer.appendChild(tocList);
+
+    const tocLinks = document.querySelectorAll('#toc-container a');
+    tocLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        tocLinks.forEach((link) => {
+          link.classList.remove("active");
+        });
+        link.classList.add("active");
+      });
+    });
+  </script>
 </body>
 
 </html>

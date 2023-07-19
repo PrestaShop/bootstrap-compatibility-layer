@@ -1,6 +1,6 @@
 {
   "name": "bootstrap-compatibility-layer",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Bootstrap compatibility layer to help using a module based on bootstrap 4 with a theme based on bootstrap 5",
   "keywords": [
     "prestashop",

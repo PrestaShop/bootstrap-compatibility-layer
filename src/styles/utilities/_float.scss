@@ -1,0 +1,28 @@
+// stylelint-disable declaration-no-important
+
+// Float
+.float-left {
+  float: left !important;
+}
+
+.float-right {
+  float: right !important;
+}
+
+.float-none {
+  float: none !important;
+}
+
+@each $breakpoint in $breakpoints {
+  @include media-breakpoint-up($breakpoint) {
+    .float-#{$breakpoint}-left {
+      float: left !important;
+    }
+    .float-#{$breakpoint}-right {
+      float: right !important;
+    }
+    .float-#{$breakpoint}-none {
+      float: none !important;
+    }
+  }
+}

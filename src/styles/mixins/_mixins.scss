@@ -1,0 +1,12 @@
+// Breakpoint
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+  $breakpoint: map-get($breakpoints, $name);
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+// Close
+@mixin btn-close-white() {
+  filter: var(--bs-btn-close-white-filter);
+}
