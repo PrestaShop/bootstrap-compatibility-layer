@@ -18,6 +18,7 @@ Or use it directly through our CDN:
 <script src="https://unpkg.com/bootstrap-compatibility-layer@1"></script>
 [...]
 ```
+To be sure that the scripts are all operational try to load the compatibility layer before the other scripts!
 
 ## Contributing
 Contributions are welcome!

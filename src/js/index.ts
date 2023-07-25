@@ -29,13 +29,15 @@ class BSCompatibilityLayer {
 
   init(): void {
     this.updateDataAttributes();
-    this.attachJQueryMethods();
+
+    this.waitingForJQuery(() => {
+      this.attachJQueryMethods();
+    });
   }
 
   public updateDataAttributes(): void {
     for (const [key, value] of Object.entries(this.dataToUpdate)) {
-      const findData = document.querySelectorAll(`[${key}]`);
-      Array.from(findData).forEach((el) => {
+      Array.from(document.querySelectorAll(`[${key}]`)).forEach((el) => {
         const dataValue = el.getAttribute(key);
         if (dataValue !== null && dataValue !== '') {
           el.setAttribute(value, dataValue);
@@ -44,21 +46,29 @@ class BSCompatibilityLayer {
     }
   }
 
+  public waitingForJQuery(callback: () => void): void {
+    const checkJQueryLoaded = (): void => {
+      if (typeof $ !== 'undefined') {
+        callback();
+      } else {
+        requestAnimationFrame(checkJQueryLoaded);
+      }
+    };
+    requestAnimationFrame(checkJQueryLoaded);
+  }
+
   public attachJQueryMethods(): void {
-    if ($ === undefined) {
-      return;
-    }
     $.fn.extend({
-      popover: function (params: Partial<Popover.Options> | undefined) {
+      popover: function(params: Partial<Popover.Options> | undefined) {
         // @ts-expect-error because it's JQuery method
-        return this.each(function () {
+        return this.each(function() {
           // @ts-expect-error because of the scope
           new bootstrap.Popover(this, params);
         });
       },
-      tooltip: function (params: Partial<Tooltip.Options> | undefined) {
+      tooltip: function(params: Partial<Tooltip.Options> | undefined) {
         // @ts-expect-error because it's JQuery method
-        return this.each(function () {
+        return this.each(function() {
           // @ts-expect-error because of the scope
           new bootstrap.Tooltip(this, params);
         });
