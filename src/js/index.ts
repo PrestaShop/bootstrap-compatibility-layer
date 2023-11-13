@@ -28,21 +28,36 @@ class BSCompatibilityLayer {
   }
 
   init(): void {
-    this.updateDataAttributes();
+    this.updateAllDataAttributes();
+    this.attachObserver();
 
     this.waitingForJQuery(() => {
       this.attachJQueryMethods();
     });
   }
 
-  public updateDataAttributes(): void {
-    for (const [key, value] of Object.entries(this.dataToUpdate)) {
+  public updateAllDataAttributes(): void {
+    for (const [key] of Object.entries(this.dataToUpdate)) {
       Array.from(document.querySelectorAll(`[${key}]`)).forEach((el) => {
-        const dataValue = el.getAttribute(key);
-        if (dataValue !== null && dataValue !== '') {
-          el.setAttribute(value, dataValue);
-        }
+        this.updateDataAttributes(el, key);
       });
+    }
+  }
+
+  public updateDataAttributes(el: Element, dataAttribute: string): void {
+    const dataValue = el.getAttribute(dataAttribute);
+    if (dataValue !== null && dataValue !== '' && this.dataToUpdate[dataAttribute] !== undefined) {
+      el.setAttribute(this.dataToUpdate[dataAttribute], dataValue);
+    }
+  }
+
+  public attachObserver(): void {
+    if ('MutationObserver' in window) {
+      const observer = new MutationObserver(this.observerCallback);
+      const config = { attributes: true, childList: true, subtree: true };
+      const targetNode = document.documentElement;
+
+      observer.observe(targetNode, config);
     }
   }
 
@@ -57,7 +72,28 @@ class BSCompatibilityLayer {
     requestAnimationFrame(checkJQueryLoaded);
   }
 
-  public attachJQueryMethods(): void {
+  observerCallback = (mutationsList: MutationRecord[], observer: MutationObserver): void => {
+    for (const mutation of mutationsList) {
+      if (mutation.type === 'childList') {
+        mutation.addedNodes.forEach((node) => {
+          if (node instanceof Element) {
+            for (const attr in this.dataToUpdate) {
+              if (attr in this.dataToUpdate && node.hasAttribute(attr)) {
+                this.updateDataAttributes(node, attr);
+              }
+            }
+          }
+        });
+      } else if (mutation.type === 'attributes' && mutation.attributeName !== null && mutation.attributeName in this.dataToUpdate) {
+        const targetElement = mutation.target;
+        if (targetElement instanceof Element) {
+          this.updateDataAttributes(targetElement, mutation.attributeName);
+        }
+      }
+    }
+  };
+
+  attachJQueryMethods = (): void => {
     $.fn.extend({
       popover: function(params: Partial<Popover.Options> | undefined) {
         // @ts-expect-error because it's JQuery method
@@ -74,7 +110,7 @@ class BSCompatibilityLayer {
         });
       }
     });
-  }
+  };
 }
 
 export default new BSCompatibilityLayer();

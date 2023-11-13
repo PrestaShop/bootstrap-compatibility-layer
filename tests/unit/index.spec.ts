@@ -7,7 +7,7 @@ describe('test for test', () => {
     el.setAttribute('data-content', 'content');
     el.setAttribute('data-toggle', 'popover');
     document.body.appendChild(el);
-    BSCompatibilityLayer.updateDataAttributes();
+    BSCompatibilityLayer.updateAllDataAttributes();
     expect(el.getAttribute('data-autohide')).toBe('true');
     expect(el.getAttribute('data-content')).toBe('content');
     expect(el.getAttribute('data-toggle')).toBe('popover');
@@ -19,7 +19,7 @@ describe('test for test', () => {
   test('test data attributes not updated if not in data to update object', () => {
     const el = document.createElement('div');
     el.setAttribute('data-foo', 'bar');
-    BSCompatibilityLayer.updateDataAttributes();
+    BSCompatibilityLayer.updateAllDataAttributes();
     expect(el.hasAttribute('data-foo')).toBe(true);
     expect(el.hasAttribute('data-bs-foo')).toBe(false);
   });
@@ -28,7 +28,7 @@ describe('test for test', () => {
     const el = document.createElement('div');
     el.setAttribute('data-autohide', '');
     document.body.appendChild(el);
-    BSCompatibilityLayer.updateDataAttributes();
+    BSCompatibilityLayer.updateAllDataAttributes();
     expect(el.hasAttribute('data-autohide')).toBe(true);
     expect(el.hasAttribute('data-bs-autohide')).toBe(false);
   });
