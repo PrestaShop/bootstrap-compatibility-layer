@@ -1,36 +1,145 @@
 import BSCompatibilityLayer from '../../src/js/index';
 
-describe('test for test', () => {
-  test('test data attributes updated correctly', () => {
-    const el = document.createElement('div');
-    el.setAttribute('data-autohide', 'true');
-    el.setAttribute('data-content', 'content');
-    el.setAttribute('data-toggle', 'popover');
-    document.body.appendChild(el);
-    BSCompatibilityLayer.updateDataAttributes();
-    expect(el.getAttribute('data-autohide')).toBe('true');
-    expect(el.getAttribute('data-content')).toBe('content');
-    expect(el.getAttribute('data-toggle')).toBe('popover');
-    expect(el.getAttribute('data-bs-autohide')).toBe('true');
-    expect(el.getAttribute('data-bs-content')).toBe('content');
-    expect(el.getAttribute('data-bs-toggle')).toBe('popover');
+describe('BSCompatibilityLayer', () => {
+  // BSCompatibilityLayer updates all data attributes in the HTML document that match the keys in the `dataToUpdate` map.
+  it('should update all data attributes in the HTML document that match the keys in the `dataToUpdate` map', () => {
+    // Arrange
+    const mockElement = document.createElement('div');
+    const mockDataAttribute = 'data-autohide';
+    const mockDataValue = 'true';
+    mockElement.setAttribute(mockDataAttribute, mockDataValue);
+    document.body.appendChild(mockElement);
+
+    // Act
+    BSCompatibilityLayer.updateAllDataAttributes();
+
+    // Assert
+    expect(mockElement.hasAttribute('data-bs-autohide')).toBe(true);
+    expect(mockElement.getAttribute('data-bs-autohide')).toBe(mockDataValue);
   });
 
-  test('test data attributes not updated if not in data to update object', () => {
-    const el = document.createElement('div');
-    el.setAttribute('data-foo', 'bar');
-    BSCompatibilityLayer.updateDataAttributes();
-    expect(el.hasAttribute('data-foo')).toBe(true);
-    expect(el.hasAttribute('data-bs-foo')).toBe(false);
+  // BSCompatibilityLayer attaches a mutation observer to the HTML document to detect changes in data attributes.
+  it('should attach a mutation observer to the HTML document to detect changes in data attributes', () => {
+    // Arrange
+    const mockObserver = jest.fn();
+    const mockMutationObserver = jest.fn(() => ({
+      observe: jest.fn()
+    }));
+    /**
+     * Too hard to type mutation observer and unecessary for this test
+     *
+     * @ts-expect-error */
+    window.MutationObserver = mockMutationObserver;
+
+    // Act
+    BSCompatibilityLayer.attachObserver();
+
+    // Assert
+    expect(mockMutationObserver).toHaveBeenCalledWith(expect.any(Function));
   });
 
-  test('test data attributes not updated if value is undefined', () => {
-    const el = document.createElement('div');
-    el.setAttribute('data-autohide', '');
-    document.body.appendChild(el);
-    BSCompatibilityLayer.updateDataAttributes();
-    expect(el.hasAttribute('data-autohide')).toBe(true);
-    expect(el.hasAttribute('data-bs-autohide')).toBe(false);
+  // BSCompatibilityLayer extends the jQuery object with BS methods.
+  it('should extend the jQuery object with BS methods', () => {
+    // Arrange
+    const mockExtend = jest.fn();
+    const mockJQuery = {
+      fn: {
+        extend: mockExtend
+      }
+    };
+    /**
+     * The global jQuery $ is not added loaded into jest
+     *
+     * @ts-expect-error */
+    global.$ = mockJQuery;
+
+    // Act
+    BSCompatibilityLayer.attachJQueryMethods();
+
+    // Assert
+    expect(mockExtend).toHaveBeenCalledWith(expect.any(Object));
+  });
+
+  // BSCompatibilityLayer updates a specific data attribute of an HTML element.
+  it('should update a specific data attribute of an HTML element', () => {
+    // Arrange
+    const mockElement = document.createElement('div');
+    const mockDataAttribute = 'data-autohide';
+    const mockDataValue = 'true';
+    mockElement.setAttribute(mockDataAttribute, mockDataValue);
+
+    // Act
+    BSCompatibilityLayer.updateDataAttributes(mockElement, mockDataAttribute);
+
+    // Assert
+    expect(mockElement.hasAttribute('data-bs-autohide')).toBe(true);
+    expect(mockElement.getAttribute('data-bs-autohide')).toBe(mockDataValue);
+  });
+
+  // BSCompatibilityLayer updates data attributes of added or modified elements.
+  it('should update data attributes of added or modified elements', () => {
+    // Arrange
+    const mockElement = document.createElement('div');
+    const mockDataAttribute = 'data-autohide';
+    const mockDataValue = 'true';
+    mockElement.setAttribute(mockDataAttribute, mockDataValue);
+
+    // Act
+    /**
+     * Can't recreate the needed type with mock
+     *
+     * @ts-expect-error */
+    BSCompatibilityLayer.observerCallback([{ type: 'childList', addedNodes: [mockElement] }], new MutationObserver(() => {}));
+
+    // Assert
+    expect(mockElement.hasAttribute('data-bs-autohide')).toBe(true);
+    expect(mockElement.getAttribute('data-bs-autohide')).toBe(mockDataValue);
+
+    const mockModifiedAttribute = 'data-content';
+    const mockModifiedValue = 'hello world';
+
+    mockElement.setAttribute(mockModifiedAttribute, mockModifiedValue);
+
+    /**
+     * Can't recreate the needed type with moke
+     *
+     * @ts-expect-error */
+    BSCompatibilityLayer.observerCallback([{ type: 'attributes', attributeName: mockModifiedAttribute, target: mockElement }], new MutationObserver(() => {}));
+
+    expect(mockElement.hasAttribute('data-bs-content')).toBe(true);
+    expect(mockElement.getAttribute('data-bs-content')).toBe(mockModifiedValue);
+  });
+
+  // BSCompatibilityLayer does not update data attributes that are not in the `dataToUpdate` map.
+  it('should not update data attributes that are not in the `dataToUpdate` map', () => {
+    // Arrange
+    const mockElement = document.createElement('div');
+    const mockDataAttribute = 'data-unknown';
+    const mockDataValue = 'unknown';
+    mockElement.setAttribute(mockDataAttribute, mockDataValue);
+
+    // Act
+    BSCompatibilityLayer.updateDataAttributes(mockElement, mockDataAttribute);
+
+    // Assert
+    expect(mockElement.hasAttribute(mockDataAttribute)).toBe(true);
+    expect(mockElement.hasAttribute('data-bs-unknown')).toBe(false);
+  });
+
+  // BSCompatibilityLayer does not update data attributes with empty or null values.
+  it('should not update data attributes with empty or null values', () => {
+    // Arrange
+    const mockElement = document.createElement('div');
+    const mockDataAttribute = 'data-autohide';
+    const mockDataValue = '';
+    mockElement.setAttribute(mockDataAttribute, mockDataValue);
+
+    // Act
+    BSCompatibilityLayer.updateDataAttributes(mockElement, mockDataAttribute);
+
+    // Assert
+    expect(mockElement.hasAttribute(mockDataAttribute)).toBe(true);
+    expect(mockElement.hasAttribute('data-bs-autohide')).toBe(false);
   });
 });
 
