@@ -18,7 +18,32 @@ Or use it directly through our CDN:
 <script src="https://unpkg.com/bootstrap-compatibility-layer@1"></script>
 [...]
 ```
-To be sure that the scripts are all operational try to load the compatibility layer before the other scripts!
+
+## Utilisation
+### Package
+L'utilisation en tant que package est très simple il suffit de le charger sur votre script
+```ts
+import BSCompatibilityLayer from 'bootstrap-compatibility-layer';
+```
+The compatibility layer initializes automatically; however, you can call the methods independently if you need to.
+```ts
+BSCompatibilityLayer.updateAllDataAttributes();
+```
+### CDN
+If you only want to use attribute modifiers, you can place the tag wherever you want in your code. However, if you want to use jQuery commands relating to Bootstrap, it is advisable to put it first in the list of your scripts and to wait for the DOM to be loaded before using them like the following code:
+```html
+[...]
+<link href="https://unpkg.com/bootstrap-compatibility-layer@1/dist/bootstrap-compatibility-layer.min.css" rel="stylesheet">
+[...]
+<script src="https://unpkg.com/bootstrap-compatibility-layer@1"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    $('[data-toggle="popover"]').popover()
+
+    $('[data-toggle="tooltip"]').tooltip()
+  });
+</script>
+```
 
 ## Contributing
 Contributions are welcome!
