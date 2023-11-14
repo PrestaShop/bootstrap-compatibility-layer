@@ -2,28 +2,28 @@ import '../styles/index.scss';
 import { type Popover, type Tooltip } from 'bootstrap';
 
 // The BSCompatibilityLayer class is responsible for updating the data attributes of HTML elements to be compatible with Bootstrap 5. It also initializes the popover and tooltip components of Bootstrap 5.
-class BSCompatibilityLayer {
-  readonly dataToUpdate: Record<string, string>;
+export class BSCompatibilityLayer {
+  readonly dataToUpdate: Map<string, string>;
 
   constructor() {
     // a readonly object that maps the old data attributes to the new data attributes in Bootstrap 5
-    this.dataToUpdate = {
-      'data-autohide': 'data-bs-autohide',
-      'data-content': 'data-bs-content',
-      'data-dismiss': 'data-bs-dismiss',
-      'data-html': 'data-bs-html',
-      'data-offset': 'data-bs-offset',
-      'data-parent': 'data-bs-parent',
-      'data-placement': 'data-bs-placement',
-      'data-reference': 'data-bs-reference',
-      'data-ride': 'data-bs-ride',
-      'data-slide': 'data-bs-slide',
-      'data-slide-to': 'data-bs-slide-to',
-      'data-spy': 'data-bs-spy',
-      'data-target': 'data-bs-target',
-      'data-toggle': 'data-bs-toggle',
-      'data-trigger': 'data-bs-trigger'
-    };
+    this.dataToUpdate = new Map([
+      ['data-autohide', 'data-bs-autohide'],
+      ['data-content', 'data-bs-content'],
+      ['data-dismiss', 'data-bs-dismiss'],
+      ['data-html', 'data-bs-html'],
+      ['data-offset', 'data-bs-offset'],
+      ['data-parent', 'data-bs-parent'],
+      ['data-placement', 'data-bs-placement'],
+      ['data-reference', 'data-bs-reference'],
+      ['data-ride', 'data-bs-ride'],
+      ['data-slide', 'data-bs-slide'],
+      ['data-slide-to', 'data-bs-slide-to'],
+      ['data-spy', 'data-bs-spy'],
+      ['data-target', 'data-bs-target'],
+      ['data-toggle', 'data-bs-toggle'],
+      ['data-trigger', 'data-bs-trigger']
+    ]);
     this.init();
   }
 
@@ -36,24 +36,33 @@ class BSCompatibilityLayer {
     });
   }
 
+  // Updates all data attributes in the HTML document that match the keys in the `dataToUpdate` map.
   public updateAllDataAttributes(): void {
-    for (const [key] of Object.entries(this.dataToUpdate)) {
-      Array.from(document.querySelectorAll(`[${key}]`)).forEach((el) => {
-        this.updateDataAttributes(el, key);
+    const elements = document.querySelectorAll(`[${Array.from(this.dataToUpdate.keys()).join('], [')}]`);
+    elements.forEach((el) => {
+      Array.from(this.dataToUpdate.keys()).forEach((key) => {
+        if (el.hasAttribute(key)) {
+          this.updateDataAttributes(el, key);
+        }
       });
-    }
+    });
   }
 
+  // Updates a specific data attribute of an HTML element.
   public updateDataAttributes(el: Element, dataAttribute: string): void {
     const dataValue = el.getAttribute(dataAttribute);
-    if (dataValue !== null && dataValue !== '' && this.dataToUpdate[dataAttribute] !== undefined) {
-      el.setAttribute(this.dataToUpdate[dataAttribute], dataValue);
+    if (dataValue !== null && dataValue !== '' && this.dataToUpdate.has(dataAttribute)) {
+      const newDataAttribute = this.dataToUpdate.get(dataAttribute);
+      if (newDataAttribute !== undefined) {
+        el.setAttribute(newDataAttribute, dataValue);
+      }
     }
   }
 
+  // Attaches a mutation observer to the HTML document to detect changes in data attributes.
   public attachObserver(): void {
     if ('MutationObserver' in window) {
-      const observer = new MutationObserver(this.observerCallback);
+      const observer = new MutationObserver(this.observerCallback.bind(this));
       const config = { attributes: true, childList: true, subtree: true };
       const targetNode = document.documentElement;
 
@@ -61,6 +70,29 @@ class BSCompatibilityLayer {
     }
   }
 
+  // Callback function for the mutation observer, updates data attributes of added or modified elements.
+  public observerCallback(mutationsList: MutationRecord[], observer: MutationObserver): void {
+    for (const mutation of mutationsList) {
+      if (mutation.type === 'childList') {
+        mutation.addedNodes.forEach((node) => {
+          if (node instanceof Element) {
+            for (const key of this.dataToUpdate.keys()) {
+              if (node.hasAttribute(key)) {
+                this.updateDataAttributes(node, key);
+              }
+            }
+          }
+        });
+      } else if (mutation.type === 'attributes' && mutation.attributeName !== null && this.dataToUpdate.has(mutation.attributeName)) {
+        const targetElement = mutation.target;
+        if (targetElement instanceof Element) {
+          this.updateDataAttributes(targetElement, mutation.attributeName);
+        }
+      }
+    }
+  }
+
+  // Waits for jQuery to be loaded before calling a callback function.
   public waitingForJQuery(callback: () => void): void {
     const checkJQueryLoaded = (): void => {
       if (typeof $ !== 'undefined') {
@@ -72,28 +104,8 @@ class BSCompatibilityLayer {
     requestAnimationFrame(checkJQueryLoaded);
   }
 
-  observerCallback = (mutationsList: MutationRecord[], observer: MutationObserver): void => {
-    for (const mutation of mutationsList) {
-      if (mutation.type === 'childList') {
-        mutation.addedNodes.forEach((node) => {
-          if (node instanceof Element) {
-            for (const attr in this.dataToUpdate) {
-              if (attr in this.dataToUpdate && node.hasAttribute(attr)) {
-                this.updateDataAttributes(node, attr);
-              }
-            }
-          }
-        });
-      } else if (mutation.type === 'attributes' && mutation.attributeName !== null && mutation.attributeName in this.dataToUpdate) {
-        const targetElement = mutation.target;
-        if (targetElement instanceof Element) {
-          this.updateDataAttributes(targetElement, mutation.attributeName);
-        }
-      }
-    }
-  };
-
-  attachJQueryMethods = (): void => {
+  // Extends the jQuery object with BS methods.
+  public attachJQueryMethods(): void {
     $.fn.extend({
       popover: function(params: Partial<Popover.Options> | undefined) {
         // @ts-expect-error because it's JQuery method
@@ -110,7 +122,7 @@ class BSCompatibilityLayer {
         });
       }
     });
-  };
+  }
 }
 
 export default new BSCompatibilityLayer();
