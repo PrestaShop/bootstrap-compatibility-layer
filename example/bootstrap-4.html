@@ -4,7 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bootstrap 4 markup with compatibility layer demo</title>
+  <title>Bootstrap 4 components with backward compatibility layer</title>
+  <link rel="icon" type="image/png" sizes="48x48" href="../favicon.ico">
   <style>
     body {
       padding: 0 0 80px 0;
@@ -14,7 +15,7 @@
       padding: 1rem;
       margin-top: 3rem;
       border-radius: 0.25rem;
-      background-color: #efefef;
+      background-color: #f4f4f4;
       font-weight: 600;
     }
 
@@ -30,14 +31,14 @@
 
     h2.title {
       margin: 60px 0 15px 0;
-      border-bottom: 2px solid lightblue;
+      border-bottom: 2px solid #a4dbe8;
     }
 
     h3.title {
       font-size: 1.5rem;
       font-weight: 600;
       margin: 20px 0 15px 0;
-      border-bottom: 2px solid lightgray;
+      border-bottom: 2px solid #f4f4f4;
     }
 
     h3.code {
@@ -48,21 +49,65 @@
       word-wrap: break-word;
       margin-top: 1rem;
       padding: 0.25rem 0.475rem;
-      background: #efefef;
+      background: #f4f4f4;
       border-radius: 0.275rem;
     }
 
-    #toc-container {
+    .bs-switch {
+      border-radius: 0.25rem;
+      padding: 0.5rem;
+      background-color: #e8f6f9;
+    }
+
+    .bs-switch__link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: #000000;
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .bs-switch__switcher {
+      display: flex;
+      align-items: stretch;
+      justify-content: start;
+      flex-shrink: 0;
+      flex-basis: 1.8rem;
+      height: 1.2rem;
+      border-radius: 1rem;
+      padding: 0.2rem;
+      background: #2eaf5e;
+    }
+
+    .bs-switch__switcher--off {
+      justify-content: end;
+      background: #af342e;
+    }
+
+    .bs-switch__switcher::before {
+      content: "";
+      display: block;
+      width: calc(1.2rem - 0.4rem);
+      border-radius: 5rem;
+      background: #ffffff;
+    }
+
+    #toc-wrapper {
       position: sticky;
       top: 20px;
     }
-
+    
     #toc-container ul {
       list-style-type: none;
+      padding-left: 0;
     }
 
     #toc-container ul li.sep a {
-      color: lightblue;
+      color: #a4dbe8;
       font-weight: 600;
       margin-top: 15px;
     }
@@ -83,7 +128,7 @@
     #toc-container ul li a:focus,
     #toc-container ul li a:active,
     #toc-container ul li a.active {
-      color: lightblue;
+      color: #a4dbe8;
       transform: translateX(4px);
     }
 
@@ -116,13 +161,21 @@
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-12 col-md-2">
-        <div id="toc-container"></div>
+      <div class="col-12 col-md-4 col-lg-3">
+        <div id="toc-wrapper">
+          <div class="bs-switch">
+            <a class="bs-switch__link" href="../example/bootstrap-5.html">
+              <span class="bs-switch__switcher"></span>
+              <span class="bs-switch__label">Compatibility Layer</span>
+            </a>
+          </div>
+          <div id="toc-container"></div>
+        </div>
       </div>
 
-      <div class="col-12 col-md-10">
+      <div class="col-12 col-md-8 col-lg-9">
         <div class="alert alert-primary mt-4">
-          💡 Components page for Bootstrap v4 / v5 backward compatibility
+          💡 Components page for Bootstrap v4 with <strong>Backward Compatibility Layer</strong>
         </div>
 
         <h1 class="title sep" id="js">Javascript Components</h1>
