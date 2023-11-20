@@ -1,5 +1,4 @@
 import '../styles/index.scss';
-import { type Popover, type Tooltip } from 'bootstrap';
 
 // The BSCompatibilityLayer class is responsible for updating the data attributes of HTML elements to be compatible with Bootstrap 5. It also initializes the popover and tooltip components of Bootstrap 5.
 export class BSCompatibilityLayer {
@@ -30,15 +29,13 @@ export class BSCompatibilityLayer {
   init(): void {
     this.updateAllDataAttributes();
     this.attachObserver();
-
-    this.waitingForJQuery(() => {
-      this.attachJQueryMethods();
-    });
   }
 
   // Updates all data attributes in the HTML document that match the keys in the `dataToUpdate` map.
   public updateAllDataAttributes(): void {
-    const elements = document.querySelectorAll(`[${Array.from(this.dataToUpdate.keys()).join('], [')}]`);
+    const elements = document.querySelectorAll(
+      `[${Array.from(this.dataToUpdate.keys()).join('], [')}]`
+    );
     elements.forEach((el) => {
       Array.from(this.dataToUpdate.keys()).forEach((key) => {
         if (el.hasAttribute(key)) {
@@ -83,45 +80,17 @@ export class BSCompatibilityLayer {
             }
           }
         });
-      } else if (mutation.type === 'attributes' && mutation.attributeName !== null && this.dataToUpdate.has(mutation.attributeName)) {
+      } else if (
+        mutation.type === 'attributes' &&
+        mutation.attributeName !== null &&
+        this.dataToUpdate.has(mutation.attributeName)
+      ) {
         const targetElement = mutation.target;
         if (targetElement instanceof Element) {
           this.updateDataAttributes(targetElement, mutation.attributeName);
         }
       }
     }
-  }
-
-  // Waits for jQuery to be loaded before calling a callback function.
-  public waitingForJQuery(callback: () => void): void {
-    const checkJQueryLoaded = (): void => {
-      if (typeof $ !== 'undefined') {
-        callback();
-      } else {
-        requestAnimationFrame(checkJQueryLoaded);
-      }
-    };
-    requestAnimationFrame(checkJQueryLoaded);
-  }
-
-  // Extends the jQuery object with BS methods.
-  public attachJQueryMethods(): void {
-    $.fn.extend({
-      popover: function(params: Partial<Popover.Options> | undefined) {
-        // @ts-expect-error because it's JQuery method
-        return this.each(function() {
-          // @ts-expect-error because of the scope
-          new bootstrap.Popover(this, params);
-        });
-      },
-      tooltip: function(params: Partial<Tooltip.Options> | undefined) {
-        // @ts-expect-error because it's JQuery method
-        return this.each(function() {
-          // @ts-expect-error because of the scope
-          new bootstrap.Tooltip(this, params);
-        });
-      }
-    });
   }
 }
 
