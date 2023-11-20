@@ -38,28 +38,6 @@ describe('BSCompatibilityLayer', () => {
     expect(mockMutationObserver).toHaveBeenCalledWith(expect.any(Function));
   });
 
-  // BSCompatibilityLayer extends the jQuery object with BS methods.
-  it('should extend the jQuery object with BS methods', () => {
-    // Arrange
-    const mockExtend = jest.fn();
-    const mockJQuery = {
-      fn: {
-        extend: mockExtend
-      }
-    };
-    /**
-     * The global jQuery $ is not added loaded into jest
-     *
-     * @ts-expect-error */
-    global.$ = mockJQuery;
-
-    // Act
-    BSCompatibilityLayer.attachJQueryMethods();
-
-    // Assert
-    expect(mockExtend).toHaveBeenCalledWith(expect.any(Object));
-  });
-
   // BSCompatibilityLayer updates a specific data attribute of an HTML element.
   it('should update a specific data attribute of an HTML element', () => {
     // Arrange

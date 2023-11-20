@@ -22,20 +22,12 @@ export default {
       name: 'bootstrap-compatibility-layer',
       file: pkg.browser,
       format: 'umd',
-      exports: 'named',
-      globals: {
-        bootstrap: 'bootstrap',
-        $: '$'
-      }
+      exports: 'named'
     },
     {
       file: pkg.module,
       format: 'es',
-      exports: 'named',
-      globals: {
-        bootstrap: 'bootstrap',
-        $: '$'
-      }
+      exports: 'named'
     }
   ]
 };
