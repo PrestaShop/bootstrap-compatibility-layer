@@ -19,7 +19,7 @@
   "homepage": "https://github.com/PrestaShop/bootstrap-compatibility-layer#readme",
   "module": "dist/bootstrap-compatibility-layer.esm.min.js",
   "browser": "dist/bootstrap-compatibility-layer.umd.min.js",
-  "main": "dist/bootstrap-compatibility-layer.esm.min.js",
+  "main": "dist/bootstrap-compatibility-layer.umd.min.js",
   "style": "dist/bootstrap-compatibility-layer.min.css",
   "scripts": {
     "build": "rollup -c",
