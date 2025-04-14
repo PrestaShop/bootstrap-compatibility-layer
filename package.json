@@ -1,6 +1,6 @@
 {
   "name": "bootstrap-compatibility-layer",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Bootstrap compatibility layer to help using a module based on bootstrap 4 with a theme based on bootstrap 5",
   "keywords": [
     "prestashop",
@@ -19,7 +19,7 @@
   "homepage": "https://github.com/PrestaShop/bootstrap-compatibility-layer#readme",
   "module": "dist/bootstrap-compatibility-layer.esm.min.js",
   "browser": "dist/bootstrap-compatibility-layer.umd.min.js",
-  "main": "dist/bootstrap-compatibility-layer.esm.min.js",
+  "main": "dist/bootstrap-compatibility-layer.umd.min.js",
   "style": "dist/bootstrap-compatibility-layer.min.css",
   "scripts": {
     "build": "rollup -c",
